@@ -6,13 +6,13 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 13:57:34 by lbirloue          #+#    #+#             */
-/*   Updated: 2023/12/04 18:56:51 by lbirloue         ###   ########.fr       */
+/*   Updated: 2023/12/04 19:23:01 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	display_back(int largeur)
+void	display_back(int largeur, int longueur)
 {
 	void	*mlx;
 	void	*mlx_win;
@@ -31,12 +31,12 @@ void	display_back(int largeur)
 	relative_path_back3 = "./img/fond3.xpm";
 	relative_path_back4 = "./img/fond4.xpm";
 	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, (largeur * 32), 1080, "Houui");
+	mlx_win = mlx_new_window(mlx, (largeur * 32), (longueur * 32), "Houui");
 
-	img.imgback = mlx_new_image(mlx, (largeur * 32), 1080);
-	img.imgbackr = mlx_new_image(mlx, (largeur * 32), 1080);
-	img.imgbackrr = mlx_new_image(mlx, (largeur * 32), 1080);
-	img.imgbackrrr = mlx_new_image(mlx, (largeur * 32), 1080);
+	img.imgback = mlx_new_image(mlx, (largeur * 32), (longueur * 32));
+	img.imgbackr = mlx_new_image(mlx, (largeur * 32), (longueur * 32));
+	img.imgbackrr = mlx_new_image(mlx, (largeur * 32), (longueur * 32));
+	img.imgbackrrr = mlx_new_image(mlx, (largeur * 32), (longueur * 32));
 
 	img.addr = mlx_get_data_addr(img.imgback, &img.bits_per_pixel, &img.line_length, &img.endian);
 	img.imgback =  mlx_xpm_file_to_image(mlx, relative_path_back, &img_width, &img_height);
@@ -44,7 +44,7 @@ void	display_back(int largeur)
 	img.imgbackrr =  mlx_xpm_file_to_image(mlx, relative_path_back3, &img_width, &img_height);
 	img.imgbackrrr =  mlx_xpm_file_to_image(mlx, relative_path_back4, &img_width, &img_height);
 
-	while (y <= 1080)
+	while (y <= (longueur * 32))
 	{
 		x = 0;
 		while (x <= (largeur * 32))
@@ -70,7 +70,6 @@ void	display_back(int largeur)
 
 int main()
 {
-	int x;
 	t_map	t_map;
 	char *map_name;
 
@@ -100,8 +99,8 @@ int main()
 
 	// if (verif_map(char *map) == 0)
 	// 	return (0);
-	x = 11;
-	printf("vient\n");
-	display_back((x - 1));
+
+	printf("%d\n", t_map.map_x);
+	display_back(t_map.map_x, t_map.map_y);
 	return (0);
 }

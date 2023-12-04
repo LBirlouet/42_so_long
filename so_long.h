@@ -6,7 +6,7 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:19:31 by lbirloue          #+#    #+#             */
-/*   Updated: 2023/12/04 19:12:35 by lbirloue         ###   ########.fr       */
+/*   Updated: 2023/12/04 19:22:02 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct	s_map {
 
 
 int main(void);
+void	display_back(int x, int y);
 //static int	ft_strlen(char *str);
 
 /*map verif*/
