@@ -6,16 +6,18 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:08:15 by lbirloue          #+#    #+#             */
-/*   Updated: 2023/11/28 14:09:20 by lbirloue         ###   ########.fr       */
+/*   Updated: 2023/12/04 18:27:41 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_strlen(char *str)
+#include "so_long.h"
+
+ int	ft_strlen_before_newline(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while (str[i] != 0);
+	while (str[i] != 0 && str[i] != '\n')
 		i++;
 	return (i);
 }
