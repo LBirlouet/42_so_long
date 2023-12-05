@@ -6,7 +6,7 @@
 #    By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/26 18:14:38 by lbirloue          #+#    #+#              #
-#    Updated: 2023/12/04 17:58:24 by lbirloue         ###   ########.fr        #
+#    Updated: 2023/12/05 19:12:36 by lbirloue         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,13 +16,14 @@ CC			=	gcc
 
 CFLAGS		=	-Wall -Wextra -Werror
 
-INCLUDES	=	so_long.h
+INCLUDES	=	./includes/so_long.h
 
-SRCS		=	main.c \
-				gnl42/get_next_line_utils.c \
-				gnl42/get_next_line.c \
-				so_long_utils.c \
-				verif.c \
+SRCS		=	./srcs/main.c \
+				./srcs/display.c \
+				./srcs/gnl42/get_next_line_utils.c \
+				./srcs/gnl42/get_next_line.c \
+				./srcs/so_long_utils.c \
+				./srcs/verif.c \
 
 
 
@@ -37,7 +38,7 @@ $(NAME) : $(OBJS)
 
 
 
-%.o : %.c so_long.h
+%.o : %.c ./includes/so_long.h
 	$(CC) $(CFLAGS) -Imlx -c $< -o $@
 
 
