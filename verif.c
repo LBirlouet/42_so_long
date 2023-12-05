@@ -6,7 +6,7 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 13:58:41 by lbirloue          #+#    #+#             */
-/*   Updated: 2023/12/04 19:13:28 by lbirloue         ###   ########.fr       */
+/*   Updated: 2023/12/05 10:28:03 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ int	verif_last_line(int line_counter, char *map_name, t_map *t_map)
 			return (-1);
 		i++;
 	}
+	close(fd);
 	return (0);
 }
 

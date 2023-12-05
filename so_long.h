@@ -6,7 +6,7 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:19:31 by lbirloue          #+#    #+#             */
-/*   Updated: 2023/12/04 19:22:02 by lbirloue         ###   ########.fr       */
+/*   Updated: 2023/12/05 10:41:53 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,26 +22,30 @@
 
 # include "gnl42/get_next_line.h"
 
-typedef struct	s_colectible {
+typedef struct s_colectible {
 	int		colectible_count;
 }				t_colectible;
 
-typedef struct	s_exit {
+typedef struct s_exit {
 	int		exit_count;
 }				t_exit;
 
-typedef struct	s_data {
+typedef struct s_data {
 	void	*imgback;
 	void	*imgbackr;
 	void	*imgbackrr;
 	void	*imgbackrrr;
+	void	*imgwall;
 	char	*addr;
+	char	*addr_wall;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
 }				t_data;
 
-typedef struct	s_map {
+typedef struct s_map {
+	char	*map_name;
+	int		map_fd;
 	int		map_x;
 	int		map_y;
 }				t_map;
@@ -54,7 +58,8 @@ typedef struct	s_map {
 
 
 int main(void);
-void	display_back(int x, int y);
+int	display_back(t_map *t_map);
+int	display_wall(t_map *t_map, void *mlx, t_data *img, void *mlx_win);
 //static int	ft_strlen(char *str);
 
 /*map verif*/
