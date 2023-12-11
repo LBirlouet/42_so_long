@@ -6,7 +6,7 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:19:31 by lbirloue          #+#    #+#             */
-/*   Updated: 2023/12/11 11:27:11 by lbirloue         ###   ########.fr       */
+/*   Updated: 2023/12/11 13:02:10 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,19 @@ typedef struct s_img_path {
 	char	*path_wall;
 	char	*path_exit;
 	char	*path_player_top;
+	char	*path_player_bot;
+	char	*path_player_left;
+	char	*path_player_right;
+
 }				t_img_path;
 
 typedef struct s_img {
 	void	*imgback;
 	void	*imgwall;
 	void	*imgplayer_top;
+	void	*imgplayer_bot;
+	void	*imgplayer_left;
+	void	*imgplayer_right;
 	void	*imgexit;
 	char	*addr;
 	int		bits_per_pixel;
@@ -97,12 +104,12 @@ typedef struct s_so_long {
 int 	main(void);
 int		display(t_so_long *t_so_long);
 
-int	display_fix(t_so_long *t_so_long);
+int	display_fix(t_so_long *t_so_long, int rotation);
 
 int		display_back(t_so_long *t_so_long);
 int		display_wall(t_so_long *t_so_long);
 int		display_exit(t_so_long *t_so_long);
-int		display_player(t_so_long *t_so_long);
+int		display_player(t_so_long *t_so_long, int rotation);
 
 int		handle_key_press(int keycode, t_so_long *t_so_long);
 
