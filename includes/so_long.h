@@ -6,7 +6,7 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:19:31 by lbirloue          #+#    #+#             */
-/*   Updated: 2023/12/05 19:08:01 by lbirloue         ###   ########.fr       */
+/*   Updated: 2023/12/11 08:49:27 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,11 @@
 
 # include "../srcs/gnl42/get_next_line.h"
 
-# define UP 
-# define DOWN 
-# define LEFT
-# define RIGHT
+# define KEY_UP 
+# define KEY_DOWN 125
+# define KEY_LEFT
+# define KEY_RIGHT
+# define KEY_ESCAPE	53
 
 
 typedef struct s_colectible {
@@ -84,10 +85,16 @@ typedef struct s_map {
 
 int 	main(void);
 int		display(t_map *t_map, t_map_element *t_map_element);
+
+int	display_fix(t_map *t_map, t_img t_img, t_mlx t_mlx, t_map_element t_map_element);
+
 int		display_back(t_map *t_map, t_mlx *t_mlx, t_img *t_img);
 int		display_wall(t_map *t_map, t_mlx *t_mlx, t_img *t_img);
-
 int		display_exit(t_mlx *t_mlx, t_img *t_img, t_map_element t_map_element);
+int		display_player(t_mlx *t_mlx, t_img *t_img, t_map_element t_map_element);
+
+int	handle_key_press(int keycode, t_mlx *t_mlx, t_img t_img, t_map_element *t_map_element);
+
 void	path(t_img *t_img);
 void	new_image(void *mlx, t_map t_map, t_img *t_img);
 //static int	ft_strlen(char *str);
