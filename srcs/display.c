@@ -6,7 +6,7 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 19:11:42 by lbirloue          #+#    #+#             */
-/*   Updated: 2023/12/11 13:09:28 by lbirloue         ###   ########.fr       */
+/*   Updated: 2023/12/11 17:23:48 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,41 +116,78 @@ int	display_wall(t_so_long *t_so_long)
 	close(fd);
 	return (0);
 }
-
-int	handle_key_press(int keycode, t_so_long *t_so_long)
+int moove(int keycode, t_so_long *t_so_long)
 {
 	int verif;
-	printf("y dans fct = %d || ", t_so_long->element.player.player_y);
-	printf("x dans fct = %d\n", t_so_long->element.player.player_x);
-	if (keycode == KEY_ESCAPE)
-	{
-		mlx_destroy_window((void *)t_so_long->mlx.mlx, (void *)t_so_long->mlx.mlx_win);
-		exit(0);
-	}
 	if (keycode == KEY_DOWN || keycode == KEY_S)
 	{
+		if ((t_so_long->element.player.player_y + 1)== t_so_long->map.map_y)
+			return (0);
 		t_so_long->element.player.player_y += 1;
 		mlx_clear_window(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win);
 		verif = display_fix(t_so_long, 2);
 	}
 	if (keycode == KEY_UP || keycode == KEY_W)
 	{
+		if (t_so_long->element.player.player_y == 1)
+			return (0);
 		t_so_long->element.player.player_y -= 1;
 		mlx_clear_window(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win);
 		verif = display_fix(t_so_long, 8);
 	}
 	if (keycode == KEY_LEFT || keycode == KEY_A)
 	{
+		if (t_so_long->element.player.player_x == 1)
+			return (0);
 		t_so_long->element.player.player_x -= 1;
 		mlx_clear_window(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win);
 		verif = display_fix(t_so_long, 4);
 	}
 	if (keycode == KEY_RIGHT || keycode == KEY_D)
 	{
+		if ((t_so_long->element.player.player_x + 2)== t_so_long->map.map_x)
+			return (0);
+		// verif = verif_gnl_wall_left_right(t_so_long, 6);
+		// if (verif == -1)
+		// 	return (0);
 		t_so_long->element.player.player_x += 1;
 		mlx_clear_window(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win);
 		verif = display_fix(t_so_long, 6);
 	}
+	return (0);
+}
+
+int	probable_win(t_so_long *t_so_long)
+{
+	if (t_so_long->element.player.player_x == t_so_long->element.exit.exit_x && t_so_long->element.player.player_y == t_so_long->element.exit.exit_y && t_so_long->element.colectible.colectible_count == 0)
+	{
+		mlx_clear_window(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win);
+		printf("ui\n");
+		mlx_put_image_to_window(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win, t_so_long->img.imgwin,
+			0, 0);
+		printf("naaa\n");
+	}
+	return (0);
+}
+
+
+int	escape(int keycode, t_so_long *t_so_long)
+{
+	if (keycode == KEY_ESCAPE)
+		{
+		mlx_destroy_window((void *)t_so_long->mlx.mlx, (void *)t_so_long->mlx.mlx_win);
+		exit(0);
+	}
+	return (0);
+}
+
+int	handle_key_press(int keycode, t_so_long *t_so_long)
+{
+	int verif;
+	verif = moove(keycode, t_so_long);
+	verif = escape(keycode, t_so_long);
+	verif = probable_win(t_so_long);
+
 	return (0);
 	// Autres actions en fonction des touches pressées
 }
