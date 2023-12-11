@@ -6,70 +6,67 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 19:11:42 by lbirloue          #+#    #+#             */
-/*   Updated: 2023/12/11 08:53:31 by lbirloue         ###   ########.fr       */
+/*   Updated: 2023/12/11 11:30:53 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-int	display(t_map *t_map, t_map_element *t_map_element)
+int	display(t_so_long *t_so_long)
 {
 	int		verif;
-	t_mlx	t_mlx;
-	t_img	t_img;
 
-	path(&t_img);
-	t_mlx.mlx = mlx_init();
-	t_mlx.mlx_win = mlx_new_window(t_mlx.mlx, (t_map->map_x * 32),
-			((t_map->map_y + 1) * 32), "so_long");
-	new_image(t_mlx.mlx, *t_map, &t_img);
+	path(t_so_long);
+	t_so_long->mlx.mlx = mlx_init();
+	t_so_long->mlx.mlx_win = mlx_new_window(t_so_long->mlx.mlx, (t_so_long->map.map_x * 32),
+			((t_so_long->map.map_y + 1) * 32), "so_long");
+	new_image(t_so_long);
 
-	verif = display_fix(t_map, t_img, t_mlx, *t_map_element);
-	printf("y avant fonction = %d\n", t_map_element->player.player_y);
-	mlx_hook(t_mlx.mlx_win, 2, 1L << 0, &handle_key_press, (void *)&t_mlx);
-	mlx_loop(t_mlx.mlx);
+	verif = display_fix(t_so_long);
+	mlx_hook(t_so_long->mlx.mlx_win, 2,0, &handle_key_press, t_so_long);
+	mlx_loop(t_so_long->mlx.mlx);
 	return (0);
 }
 
-int	display_fix(t_map *t_map, t_img t_img, t_mlx t_mlx, t_map_element t_map_element)
+int	display_fix(t_so_long *t_so_long)
 {
 	int verif ;
 
-	verif = display_back(t_map, &t_mlx, &t_img);
-	verif = display_wall(t_map, &t_mlx, &t_img);
-	verif = display_exit(&t_mlx, &t_img, t_map_element);
-	verif = display_player(&t_mlx, &t_img, t_map_element);
+	verif = display_back(t_so_long);
+	verif = display_wall(t_so_long);
+	verif = display_exit(t_so_long);
+	verif = display_player(t_so_long);
 	return (verif);
 }
 
-int	display_player(t_mlx *t_mlx, t_img *t_img, t_map_element t_map_element)
+int	display_player(t_so_long *t_so_long)
 {
-	mlx_put_image_to_window(t_mlx->mlx, t_mlx->mlx_win, t_img->imgplayer_top,
-		(t_map_element.player.player_x * 32), (t_map_element.player.player_count
+	mlx_put_image_to_window(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win, t_so_long->img.imgplayer_top,
+		(t_so_long->element.player.player_x * 32), (t_so_long->element.player.player_y
 			* 32));
 	return (0);
 }
 
-int	display_exit(t_mlx *t_mlx, t_img *t_img, t_map_element t_map_element)
+int	display_exit(t_so_long *t_so_long)
 {
-	mlx_put_image_to_window(t_mlx->mlx, t_mlx->mlx_win, t_img->imgexit,
-		(t_map_element.exit.exit_x * 32), (t_map_element.exit.exit_y * 32));
+	mlx_put_image_to_window(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win, t_so_long->img.imgexit,
+		(t_so_long->element.exit.exit_x * 32), (t_so_long->element.exit.exit_y * 32));
 	return (0);
 }
 
-int	display_back(t_map *t_map, t_mlx *t_mlx, t_img *t_img)
+int	display_back(t_so_long *t_so_long)
 {
 	int	x;
 	int	y;
 
 	x = 0;
 	y = 0;
-	while (y <= (t_map->map_y * 32))
+	while (y <= (t_so_long->map.map_y * 32))
 	{
 		x = 0;
-		while (x <= (t_map->map_x * 32))
+		while (x <= (t_so_long->map.map_x * 32))
 		{
-			mlx_put_image_to_window(t_mlx->mlx, t_mlx->mlx_win, t_img->imgback,
+			mlx_put_image_to_window(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win, t_so_long->img.imgback,
 				x, y);
 			x += 32;
 		}
@@ -78,26 +75,26 @@ int	display_back(t_map *t_map, t_mlx *t_mlx, t_img *t_img)
 	return (0);
 }
 
-int	display_wall(t_map *t_map, t_mlx *t_mlx, t_img *t_img)
+int	display_wall(t_so_long *t_so_long)
 {
 	char	*line;
 	int		x;
 	int		y;
 	int		fd;
 
-	fd = open(t_map->map_name, O_RDONLY, 0644);
+	fd = open(t_so_long->map.map_name, O_RDONLY, 0644);
 	if (fd == -1)
 		return (1);
 	y = 0;
-	while (y <= t_map->map_y)
+	while (y <= t_so_long->map.map_y)
 	{
 		x = 0;
 		line = get_next_line(fd);
 		while (line[x] != '\n' && line[x] != 0)
 		{
 			if (line[x] == '1')
-				mlx_put_image_to_window(t_mlx->mlx, t_mlx->mlx_win,
-					t_img->imgwall, (x * 32), (y * 32));
+				mlx_put_image_to_window(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win,
+					t_so_long->img.imgwall, (x * 32), (y * 32));
 			x++;
 		}
 		free(line);
@@ -107,21 +104,39 @@ int	display_wall(t_map *t_map, t_mlx *t_mlx, t_img *t_img)
 	return (0);
 }
 
-int	handle_key_press(int keycode, t_mlx *t_mlx, t_img t_img, t_map_element *t_map_element)
+int	handle_key_press(int keycode, t_so_long *t_so_long)
 {
-	printf("y dans fonction %d\n", t_map_element->player.player_y);
+	int verif;
+	printf("y dans fct = %d || ", t_so_long->element.player.player_y);
+	printf("x dans fct = %d\n", t_so_long->element.player.player_x);
 	if (keycode == KEY_ESCAPE)
 	{
-		mlx_destroy_window(t_mlx->mlx, t_mlx->mlx_win);
+		mlx_destroy_window((void *)t_so_long->mlx.mlx, (void *)t_so_long->mlx.mlx_win);
 		exit(0);
 	}
-	if (keycode == KEY_DOWN)
+	if (keycode == KEY_DOWN || keycode == KEY_S)
 	{
-		t_map_element->player.player_y = 5;
-		t_map_element->player.player_x = 5;
-
-		mlx_clear_window(t_mlx->mlx, t_mlx->mlx_win);
-		mlx_put_image_to_window(t_mlx->mlx, t_mlx->mlx_win, t_img.imgplayer_top, (t_map_element->player.player_x * 32), (t_map_element->player.player_y * 32));
+		t_so_long->element.player.player_y += 1;
+		mlx_clear_window(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win);
+		verif = display_fix(t_so_long);
+	}
+	if (keycode == KEY_UP || keycode == KEY_W)
+	{
+		t_so_long->element.player.player_y -= 1;
+		mlx_clear_window(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win);
+		verif = display_fix(t_so_long);
+	}
+	if (keycode == KEY_LEFT || keycode == KEY_A)
+	{
+		t_so_long->element.player.player_x -= 1;
+		mlx_clear_window(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win);
+		verif = display_fix(t_so_long);
+	}
+	if (keycode == KEY_RIGHT || keycode == KEY_D)
+	{
+		t_so_long->element.player.player_x += 1;
+		mlx_clear_window(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win);
+		verif = display_fix(t_so_long);
 	}
 	return (0);
 	// Autres actions en fonction des touches pressées

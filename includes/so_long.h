@@ -6,7 +6,7 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:19:31 by lbirloue          #+#    #+#             */
-/*   Updated: 2023/12/11 08:49:27 by lbirloue         ###   ########.fr       */
+/*   Updated: 2023/12/11 11:27:11 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,16 @@
 
 # include "../srcs/gnl42/get_next_line.h"
 
-# define KEY_UP 
+# define KEY_UP 126
 # define KEY_DOWN 125
-# define KEY_LEFT
-# define KEY_RIGHT
+# define KEY_LEFT 123
+# define KEY_RIGHT 124
+# define KEY_W 13
+# define KEY_S 1
+# define KEY_A 0
+# define KEY_D 2
 # define KEY_ESCAPE	53
+
 
 
 typedef struct s_colectible {
@@ -82,29 +87,35 @@ typedef struct s_map {
 	int		map_y;
 }				t_map;
 
+typedef struct s_so_long {
+	t_map_element	element;
+	t_img			img;
+	t_mlx			mlx;
+	t_map			map;
+}				t_so_long;
 
 int 	main(void);
-int		display(t_map *t_map, t_map_element *t_map_element);
+int		display(t_so_long *t_so_long);
 
-int	display_fix(t_map *t_map, t_img t_img, t_mlx t_mlx, t_map_element t_map_element);
+int	display_fix(t_so_long *t_so_long);
 
-int		display_back(t_map *t_map, t_mlx *t_mlx, t_img *t_img);
-int		display_wall(t_map *t_map, t_mlx *t_mlx, t_img *t_img);
-int		display_exit(t_mlx *t_mlx, t_img *t_img, t_map_element t_map_element);
-int		display_player(t_mlx *t_mlx, t_img *t_img, t_map_element t_map_element);
+int		display_back(t_so_long *t_so_long);
+int		display_wall(t_so_long *t_so_long);
+int		display_exit(t_so_long *t_so_long);
+int		display_player(t_so_long *t_so_long);
 
-int	handle_key_press(int keycode, t_mlx *t_mlx, t_img t_img, t_map_element *t_map_element);
+int		handle_key_press(int keycode, t_so_long *t_so_long);
 
-void	path(t_img *t_img);
-void	new_image(void *mlx, t_map t_map, t_img *t_img);
+void	path(t_so_long *t_so_long);
+void	new_image(t_so_long *t_so_long);
 //static int	ft_strlen(char *str);
 
 /*map verif*/
-int 	verif_map(t_map *t_map, t_map_element *t_map_element);
-int		element_verif(t_map_element t_map_element);
-int		verif_line(char *map, int line_size, t_map_element *t_map_element, int line_counter);
+int 	verif_map(t_so_long *t_so_long);
+int		element_verif(t_so_long *t_so_long);
+int		verif_line(char *map, int line_size, t_so_long *t_so_long, int line_counter);
 int		verif_first_line(char *map);
-int		verif_last_line(int line_counter, t_map *t_map);
+int		verif_last_line(int line_counter, t_so_long *t_so_long);
 
 
 
