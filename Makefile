@@ -6,7 +6,7 @@
 #    By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/26 18:14:38 by lbirloue          #+#    #+#              #
-#    Updated: 2023/12/05 19:41:53 by lbirloue         ###   ########.fr        #
+#    Updated: 2023/12/12 13:35:41 by lbirloue         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,8 @@ SRCS		=	./srcs/main.c \
 				./srcs/gnl42/get_next_line.c \
 				./srcs/so_long_utils.c \
 				./srcs/verif.c \
+				./srcs/malloc_map.c \
+				./srcs/move.c \
 
 
 OBJS = $(SRCS:.c=.o)

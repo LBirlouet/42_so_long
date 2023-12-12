@@ -6,7 +6,7 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:19:31 by lbirloue          #+#    #+#             */
-/*   Updated: 2023/12/11 17:17:40 by lbirloue         ###   ########.fr       */
+/*   Updated: 2023/12/12 14:03:29 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <limits.h>
-# include <mlx.h>
+# include "../Minilibx/minilibx_opengl_20191021/mlx.h"
 # include <fcntl.h>
 
 # include "../srcs/gnl42/get_next_line.h"
@@ -38,6 +38,10 @@ typedef struct s_colectible {
 	int		colectible_count;
 }				t_colectible;
 
+typedef struct s_enemy {
+	int		enemy_count;
+}				t_enemy;
+
 typedef struct s_exit {
 	int		exit_count;
 	int		exit_x;
@@ -52,9 +56,6 @@ typedef struct s_player {
 
 typedef struct s_wall {
 	int		wall_count;
-	int		wall_x;
-	int		wall_y;
-	
 }				t_wall;
 
 typedef struct s_map_element {
@@ -62,6 +63,7 @@ typedef struct s_map_element {
 	t_colectible	colectible;
 	t_player		player;
 	t_wall			wall;
+	t_enemy			enemy;
 }				t_map_element;
 
 typedef struct s_img_path {
@@ -72,7 +74,10 @@ typedef struct s_img_path {
 	char	*path_player_bot;
 	char	*path_player_left;
 	char	*path_player_right;
+	char	*path_collectible;	
 	char	*path_win;
+	char	*path_loose;
+	char	*path_enemy;
 }				t_img_path;
 
 typedef struct s_img {
@@ -83,7 +88,10 @@ typedef struct s_img {
 	void	*imgplayer_left;
 	void	*imgplayer_right;
 	void	*imgexit;
+	void	*imgcollectible;	
 	void	*imgwin;
+	void	*imgloose;
+	void	*imgenemy;
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
@@ -101,6 +109,7 @@ typedef struct s_map {
 	int		map_fd;
 	int		map_x;
 	int		map_y;
+	char	**map;
 }				t_map;
 
 typedef struct s_so_long {
@@ -110,7 +119,7 @@ typedef struct s_so_long {
 	t_map			map;
 }				t_so_long;
 
-int 	main(void);
+int 	main(int argc, char **argv);
 int		display(t_so_long *t_so_long);
 
 int		display_fix(t_so_long *t_so_long, int rotation);
@@ -118,10 +127,27 @@ int		display_back(t_so_long *t_so_long);
 int		display_wall(t_so_long *t_so_long);
 int		display_exit(t_so_long *t_so_long);
 int		display_player(t_so_long *t_so_long, int rotation);
+int		display_collectible(t_so_long *t_so_long);
+int		display_enemy(t_so_long *t_so_long);
+void	display_win(t_so_long *t_so_long);
+void	display_loose(t_so_long *t_so_long);
 
-int		handle_key_press(int keycode, t_so_long *t_so_long);
-int		moove(int keycode, t_so_long *t_so_long);
+int		collectible_update(t_so_long *t_so_long);
+int		possible_loose(t_so_long *t_so_long);
+
+int		verif_wall(t_so_long *t_so_long, int side);
 int		escape(int keycode, t_so_long *t_so_long);
+void close_window(void *mlx_ptr, void *win_ptr);
+
+/*move fonctions*/
+int		moove(int keycode, t_so_long *t_so_long);
+int		handle_key_press(int keycode, t_so_long *t_so_long);
+int		moove_down(t_so_long *t_so_long);
+int		moove_up(t_so_long *t_so_long);
+int		moove_left(t_so_long *t_so_long);
+int		moove_right(t_so_long *t_so_long);
+
+
 
 int	probable_win(t_so_long *t_so_long);
 
@@ -139,6 +165,9 @@ int 	verif_gnl_wall_left_right(t_so_long *t_so_long, int side);
 
 
 
+/*malloc and fill map*/
+int malloc_map(t_so_long *t_so_long);
+int	fill_map(t_so_long *t_so_long);
 
 /*utils*/
 int	ft_strlen_before_newline(char *str);

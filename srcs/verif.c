@@ -6,7 +6,7 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 13:58:41 by lbirloue          #+#    #+#             */
-/*   Updated: 2023/12/11 10:30:06 by lbirloue         ###   ########.fr       */
+/*   Updated: 2023/12/12 10:35:49 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int verif_map(t_so_long *t_so_long)
 	t_so_long->element.exit.exit_count = 0;
 	t_so_long->element.colectible.colectible_count = 0;
 	t_so_long->element.player.player_count = 0;
+	t_so_long->element.enemy.enemy_count = 0;
 	line_counter = 0;
 	line = get_next_line(t_so_long->map.map_fd);
 	verif = verif_first_line(line);
@@ -47,6 +48,7 @@ int verif_map(t_so_long *t_so_long)
 	}
 	close(t_so_long->map.map_fd);
 	t_so_long->map.map_x = line_size;
+//	printf("%d\n", line_size);
 	t_so_long->map.map_y = line_counter;
 //	printf("exit_count ==%d|%d\n", t_map_element->exit.exit_count, t_map_element->colectible.colectible_count);
 	verif = element_verif(t_so_long);
@@ -88,7 +90,11 @@ int	verif_line(char *map, int line_size, t_so_long *t_so_long, int line_counter)
 			t_so_long->element.player.player_x = i;
 			t_so_long->element.player.player_y = line_counter;
 		}
-		if (map[i] != '1' && map[i] != '0' && map[i] != 'P' && map[i] != 'C' && map[i] != 'E')
+		if (map[i] == '!')
+		{
+			t_so_long->element.enemy.enemy_count++;
+		}
+		if (map[i] != '1' && map[i] != '0' && map[i] != 'P' && map[i] != 'C' && map[i] != 'E' && map[i] != '!')
 			return (-1);
 		i++;
 	}

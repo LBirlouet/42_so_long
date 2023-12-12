@@ -6,7 +6,7 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:08:15 by lbirloue          #+#    #+#             */
-/*   Updated: 2023/12/11 17:25:40 by lbirloue         ###   ########.fr       */
+/*   Updated: 2023/12/12 13:45:45 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,12 @@ void	path(t_so_long *t_so_long)
 	t_so_long->img.path.path_player_bot = "./img/player_bot.xpm";
 	t_so_long->img.path.path_player_left = "./img/player_left.xpm";
 	t_so_long->img.path.path_player_right = "./img/player_right.xpm";
+	t_so_long->img.path.path_collectible = "./img/collectible.xpm";
 
-	t_so_long->img.path.path_player_right = "./img/win_test.xpm";
+
+	t_so_long->img.path.path_win = "./img/win_test.xpm";
+	t_so_long->img.path.path_loose = "./img/loose.xpm";
+	t_so_long->img.path.path_enemy = "./img/enemy.xpm";
 
 
 	return ;
@@ -40,9 +44,17 @@ void	new_image(t_so_long *t_so_long)
 	t_so_long->img.imgplayer_bot = mlx_new_image(t_so_long->mlx.mlx, (t_so_long->map.map_x * 100), (t_so_long->map.map_x * 100));
 	t_so_long->img.imgplayer_left = mlx_new_image(t_so_long->mlx.mlx, (t_so_long->map.map_x * 100), (t_so_long->map.map_x * 100));
 	t_so_long->img.imgplayer_right = mlx_new_image(t_so_long->mlx.mlx, (t_so_long->map.map_x * 100), (t_so_long->map.map_x * 100));
+	t_so_long->img.imgcollectible = mlx_new_image(t_so_long->mlx.mlx, (t_so_long->map.map_x * 100), (t_so_long->map.map_x * 100));
 	
+
 	t_so_long->img.imgwin = mlx_new_image(t_so_long->mlx.mlx, 128, 128);
+	t_so_long->img.imgloose = mlx_new_image(t_so_long->mlx.mlx, 128, 128);
+	t_so_long->img.imgenemy = mlx_new_image(t_so_long->mlx.mlx, 128, 128);
+
 	t_so_long->img.imgwin = mlx_xpm_file_to_image(t_so_long->mlx.mlx, t_so_long->img.path.path_win, &img_width, &img_height);
+	t_so_long->img.imgloose = mlx_xpm_file_to_image(t_so_long->mlx.mlx, t_so_long->img.path.path_loose, &img_width, &img_height);
+	t_so_long->img.imgenemy = mlx_xpm_file_to_image(t_so_long->mlx.mlx, t_so_long->img.path.path_enemy, &img_width, &img_height);
+
 
 	t_so_long->img.imgback = mlx_xpm_file_to_image(t_so_long->mlx.mlx, t_so_long->img.path.path_back, &img_width, &img_height);
 	t_so_long->img.imgwall = mlx_xpm_file_to_image(t_so_long->mlx.mlx, t_so_long->img.path.path_wall, &img_width, &img_height);
@@ -51,6 +63,8 @@ void	new_image(t_so_long *t_so_long)
 	t_so_long->img.imgplayer_bot = mlx_xpm_file_to_image(t_so_long->mlx.mlx, t_so_long->img.path.path_player_bot, &img_width, &img_height);
 	t_so_long->img.imgplayer_left = mlx_xpm_file_to_image(t_so_long->mlx.mlx, t_so_long->img.path.path_player_left, &img_width, &img_height);
 	t_so_long->img.imgplayer_right = mlx_xpm_file_to_image(t_so_long->mlx.mlx, t_so_long->img.path.path_player_right, &img_width, &img_height);
+	t_so_long->img.imgcollectible = mlx_xpm_file_to_image(t_so_long->mlx.mlx, t_so_long->img.path.path_collectible, &img_width, &img_height);
+
 
 	return ;
 }
