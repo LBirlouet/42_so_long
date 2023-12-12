@@ -6,7 +6,7 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 13:58:41 by lbirloue          #+#    #+#             */
-/*   Updated: 2023/12/12 10:35:49 by lbirloue         ###   ########.fr       */
+/*   Updated: 2023/12/12 18:48:49 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int verif_map(t_so_long *t_so_long)
 		return (-1);
 	}
 	line_size = ft_strlen_before_newline(line);
+	if (line_size > 25)
+		return (-1);
 	while (line)
 	{
 		free(line);
@@ -47,10 +49,10 @@ int verif_map(t_so_long *t_so_long)
 		}
 	}
 	close(t_so_long->map.map_fd);
+	if (line_counter > 12)
+		return (-1);
 	t_so_long->map.map_x = line_size;
-//	printf("%d\n", line_size);
 	t_so_long->map.map_y = line_counter;
-//	printf("exit_count ==%d|%d\n", t_map_element->exit.exit_count, t_map_element->colectible.colectible_count);
 	verif = element_verif(t_so_long);
 	if (verif == -1)
 		return (-1);
@@ -144,4 +146,3 @@ int	verif_last_line(int line_counter, t_so_long *t_so_long)
 	close(t_so_long->map.map_fd);
 	return (0);
 }
-

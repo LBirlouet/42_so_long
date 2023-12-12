@@ -6,7 +6,7 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 19:11:42 by lbirloue          #+#    #+#             */
-/*   Updated: 2023/12/12 14:06:23 by lbirloue         ###   ########.fr       */
+/*   Updated: 2023/12/12 17:32:07 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@ int	display(t_so_long *t_so_long)
 	int		verif;
 
 	path(t_so_long);
+	t_so_long->moove_nbr = 0;
 	t_so_long->mlx.mlx = mlx_init();
 	t_so_long->mlx.mlx_win = mlx_new_window(t_so_long->mlx.mlx, (t_so_long->map.map_x * 100),
 			((t_so_long->map.map_y + 1) * 100), "so_long");
 	new_image(t_so_long);
+	t_so_long->status = 0;
 
 //	mlx_string_put(t_so_long->mlx.mlx, t_so_long->mlx.mlx, 100, 100, 0x00FF66, "oui");
 	verif = display_fix(t_so_long, 8);
@@ -28,16 +30,17 @@ int	display(t_so_long *t_so_long)
 
 	
 	mlx_hook(t_so_long->mlx.mlx_win, 2,0, &handle_key_press, t_so_long);
-//	mlx_hook(t_so_long->mlx.mlx_win, 17, 1L << 17, &close_window, t_so_long->mlx.mlx);
+	mlx_hook(t_so_long->mlx.mlx_win, 17, 0, &close_window, t_so_long);
 	mlx_loop(t_so_long->mlx.mlx);
 	return (0);
 }
 
-// void close_window(t_so_long *t_so_long)
-// {
-// 	mlx_destroy_window(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win);
-// 	exit(0);
-// }
+int close_window(int keycode, t_so_long *t_so_long)
+{
+	(void) keycode;
+	mlx_destroy_window(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win);
+	exit(0);
+}
 
 int	display_collectible(t_so_long *t_so_long)
 {
@@ -228,10 +231,11 @@ int	possible_loose(t_so_long *t_so_long)
 	if (t_so_long->map.map[j][i] == '!')
 	{
 	//	printf("vient\n");
-	//	display_loose(t_so_long);
+		display_loose(t_so_long);
+		t_so_long->status = 1;
 		// printf("non %s\n", t_so_long->map.map[j]);
-		mlx_destroy_window((void *)t_so_long->mlx.mlx, (void *)t_so_long->mlx.mlx_win);
-		exit (0);
+	//	mlx_destroy_window((void *)t_so_long->mlx.mlx, (void *)t_so_long->mlx.mlx_win);
+	//	exit (0);
 	}
 	
 	return (0);	
@@ -243,7 +247,6 @@ void	display_loose(t_so_long *t_so_long)
 	int j;
 
 	i = 0;
-
 	while (i <= t_so_long->map.map_y)
 	{
 		j = 0;
@@ -256,8 +259,10 @@ void	display_loose(t_so_long *t_so_long)
 		i++;
 	}
 //	printf("revient\n");
-	mlx_put_image_to_window(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win, t_so_long->img.imgloose, (((t_so_long->map.map_x -1) *100) / 2), (((t_so_long->map.map_y - 2)* 100) / 2));
-
+	
+	mlx_put_image_to_window(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win, t_so_long->img.imgloose, (((t_so_long->map.map_x - 2) *100) / 2), (((t_so_long->map.map_y - 3)* 100) / 2));
+	mlx_put_image_to_window(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win, t_so_long->img.imgloosetxt, (((t_so_long->map.map_x - 2) *100) / 2), (((t_so_long->map.map_y + 1 )* 100) / 2));
+//	mlx_string_put(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win,((t_so_long->map.map_x * 100)/2) , ((t_so_long->map.map_y * 100)/2), 0xfffafa, "YOU LOOSE !");
 }
 
 void	display_win(t_so_long *t_so_long)
@@ -280,12 +285,12 @@ void	display_win(t_so_long *t_so_long)
 		}
 		i++;
 	}
-	mlx_put_image_to_window(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win, t_so_long->img.imgwin, (((t_so_long->map.map_x -1) *100) / 2), (((t_so_long->map.map_y - 2)* 100) / 2));
-
-	mlx_destroy_window((void *)t_so_long->mlx.mlx, (void *)t_so_long->mlx.mlx_win);
-	exit(0);
+	mlx_put_image_to_window(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win, t_so_long->img.imgwin, (((t_so_long->map.map_x - 1) *100) / 2), (((t_so_long->map.map_y - 2)* 100) / 2));
+	mlx_put_image_to_window(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win, t_so_long->img.imgwintxt, (((t_so_long->map.map_x - 2) *100) / 2), (((t_so_long->map.map_y )* 100) / 2));
+	t_so_long->status = 1;
+//	mlx_destroy_window((void *)t_so_long->mlx.mlx, (void *)t_so_long->mlx.mlx_win);
+//	exit(0);
 	
-//	mlx_string_put(t_so_long->mlx.mlx, t_so_long->mlx.mlx, 100, 100, 223, "YOU WIN");
 }
 
 int	probable_win(t_so_long *t_so_long)

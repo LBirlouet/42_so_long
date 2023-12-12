@@ -6,51 +6,63 @@
 #    By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/26 18:14:38 by lbirloue          #+#    #+#              #
-#    Updated: 2023/12/12 13:35:41 by lbirloue         ###   ########.fr        #
+#    Updated: 2023/12/12 17:51:44 by lbirloue         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	so_long
 
-CC			=	gcc
+NAME			= so_long
 
-CFLAGS		=	-Wall -Wextra -Werror
+SRC				=	./srcs/main.c \
+					./srcs/verif.c \
+	                ./srcs/display.c \
+	                ./srcs/move.c \
+	                ./srcs/so_long_utils.c \
+	                ./srcs/malloc_map.c \
+					./srcs/gnl42/get_next_line_utils.c \
+					./srcs/gnl42/get_next_line.c \
+				
+OBJ		         = ${SRC:.c=.o}
 
-INCLUDES	=	./includes/so_long.h
+FT_PRINTF		= libftprintf.a
 
-SRCS		=	./srcs/main.c \
-				./srcs/display.c \
-				./srcs/gnl42/get_next_line_utils.c \
-				./srcs/gnl42/get_next_line.c \
-				./srcs/so_long_utils.c \
-				./srcs/verif.c \
-				./srcs/malloc_map.c \
-				./srcs/move.c \
+FT_PRINTF_PATH	= ft_printf
 
+MLX				= libmlx.a
 
-OBJS = $(SRCS:.c=.o)
+MLX_PATH		= mlx
 
+CC				= gcc
 
-all : $(NAME) 
+RM				= rm -f
 
+C_FLAGS			= -Wall -Wextra -Werror
 
-$(NAME) : $(OBJS)
-	$(CC) $(OBJS) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+MLX_FLAGS		= -L. -lmlx -framework OpenGL -framework AppKit
 
+%.o: %.c
+	$(CC) $(C_FLAGS) -c $< -o $@
 
+all: ${NAME}
+${NAME}: ${OBJ} ${FT_PRINTF} ${MLX} 
+	${CC} ${OBJ} -o ${NAME} ${FT_PRINTF} ${MLX_FLAGS} ${MLX} 
 
-%.o : %.c ./includes/so_long.h
-	$(CC) $(CFLAGS) -Imlx -c $< -o $@
+${FT_PRINTF}:
+	${MAKE} -C ${FT_PRINTF_PATH}
+	mv ${FT_PRINTF_PATH}/${FT_PRINTF} .
 
+${MLX}:
+	${MAKE} -C ${MLX_PATH}
+	mv ${MLX_PATH}/${MLX} .
 
 clean:
-	rm -rf $(OBJS)
-
+	${MAKE} clean -C ${FT_PRINTF_PATH}
+	${MAKE} clean -C ${MLX_PATH}
+	${RM} ${OBJ}
 
 fclean: clean
-	rm -rf $(NAME) 
+	${RM} ${NAME} ${FT_PRINTF} ${MLX} 
 
 re: fclean all
 
-
-.PHONY:		all clean fclean re
+.PHONY: all clean fclean re
