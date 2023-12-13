@@ -6,7 +6,7 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 12:05:04 by lbirloue          #+#    #+#             */
-/*   Updated: 2023/12/13 17:21:24 by lbirloue         ###   ########.fr       */
+/*   Updated: 2023/12/13 19:24:38 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	error_msg(void)
 
 int	return_free_map_verif(t_so_long *t_so_long, int tab_nbr, int ret)
 {
-	//tab_nbr += 1;
 	while (tab_nbr >= 0)
 	{
 		free(t_so_long->verif.map_verif[tab_nbr]);
@@ -33,12 +32,11 @@ int	return_free_map_verif(t_so_long *t_so_long, int tab_nbr, int ret)
 	return (ret);
 }
 
-int free_all_exit(t_so_long *t_so_long)
+int	free_all_exit(t_so_long *t_so_long)
 {
-	int i;
+	int	i;
 
 	i = t_so_long->map.map_y;
-//	printf("%d\n", i);
 	while (i >= 0)
 	{
 		free(t_so_long->map.map[i]);
@@ -48,6 +46,5 @@ int free_all_exit(t_so_long *t_so_long)
 	free(t_so_long->map.map);
 	t_so_long->map.map = NULL;
 	system("leaks so_long");
-//	system("leaks so_long");
 	exit (0);
 }

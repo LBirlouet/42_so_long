@@ -6,7 +6,7 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:19:31 by lbirloue          #+#    #+#             */
-/*   Updated: 2023/12/13 17:09:40 by lbirloue         ###   ########.fr       */
+/*   Updated: 2023/12/13 19:22:35 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,11 @@ int		display_player(t_so_long *t_so_long, int rotation);
 int		display_collectible(t_so_long *t_so_long);
 int		display_enemy(t_so_long *t_so_long);
 int	display_heart(t_so_long *t_so_long);
+void	display_heart2(t_so_long *t_so_long);
+void	display_heart1(t_so_long *t_so_long);
+void	display_heart0(t_so_long *t_so_long);
+
+
 void	display_win(t_so_long *t_so_long);
 void	display_loose(t_so_long *t_so_long);
 
@@ -160,7 +165,7 @@ int free_all_exit(t_so_long *t_so_long);
 int		collectible_update(t_so_long *t_so_long);
 int		possible_loose(t_so_long *t_so_long);
 
-int		verif_wall(t_so_long *t_so_long, int side);
+int		verif_wall(t_so_long *t_so_long, int side, int x);
 int		escape(int keycode, t_so_long *t_so_long);
 int	 close_window(int keycode, t_so_long *t_so_long);
 
@@ -173,7 +178,7 @@ int		moove_left(t_so_long *t_so_long);
 int		moove_right(t_so_long *t_so_long);
 
 
-int	probable_win(t_so_long *t_so_long);
+int	possible_win(t_so_long *t_so_long);
 
 void	path(t_so_long *t_so_long);
 void	new_image(t_so_long *t_so_long);

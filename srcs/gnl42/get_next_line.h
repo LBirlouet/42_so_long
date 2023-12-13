@@ -6,7 +6,7 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 17:39:10 by lbirloue          #+#    #+#             */
-/*   Updated: 2023/11/23 19:07:09 by lbirloue         ###   ########.fr       */
+/*   Updated: 2023/12/13 18:54:20 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
 # include <stdlib.h>
 # include <stddef.h>
 # include <limits.h>
-
-#include "stdio.h"
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 32

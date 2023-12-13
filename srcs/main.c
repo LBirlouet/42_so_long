@@ -6,7 +6,7 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 13:57:34 by lbirloue          #+#    #+#             */
-/*   Updated: 2023/12/13 17:13:53 by lbirloue         ###   ########.fr       */
+/*   Updated: 2023/12/13 19:26:44 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,11 @@
 
 int main(int argc, char **argv)
 {
-	t_so_long t_so_long;
-	int		verif;
+	t_so_long	t_so_long;
+	int			verif;
 
-	(void) argc;
-	(void) argv;	
-	// if (argc != 0 !! !argv[1])
-	// 	return (0);
+	if (argc != 2 || !argv[1])
+		return (0);
 	t_so_long.heart = 2;
 	t_so_long.element.player.rotation = 8;
 	t_so_long.map.map_name = argv[1];
