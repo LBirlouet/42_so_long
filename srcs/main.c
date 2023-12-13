@@ -6,7 +6,7 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 13:57:34 by lbirloue          #+#    #+#             */
-/*   Updated: 2023/12/13 12:08:22 by lbirloue         ###   ########.fr       */
+/*   Updated: 2023/12/13 17:13:53 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,9 @@ int main(int argc, char **argv)
 	if (verif == -1)
 		return (error_msg());
 	verif = malloc_map(&t_so_long);
-	printf("avant\n");
 	verif = verif_map_possible(&t_so_long);
 	if (verif == -1)
 		return (-1);
-	printf("apres\n");
 	verif = display(&t_so_long);
 	if (verif == -1)
 		return (-1);

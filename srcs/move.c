@@ -6,7 +6,7 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 12:36:57 by lbirloue          #+#    #+#             */
-/*   Updated: 2023/12/13 10:38:33 by lbirloue         ###   ########.fr       */
+/*   Updated: 2023/12/13 17:04:33 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	handle_key_press(int keycode, t_so_long *t_so_long)
 	{
 	verif = moove(keycode, t_so_long);
 	verif = probable_win(t_so_long);
-	printf("x = %d| y = %d\n", t_so_long->element.player.player_x, t_so_long->element.player.player_y);
+//	printf("x = %d| y = %d\n", t_so_long->element.player.player_x, t_so_long->element.player.player_y);
 	verif = possible_loose(t_so_long);
 	}
 	verif = escape(keycode, t_so_long);

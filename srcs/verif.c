@@ -6,7 +6,7 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 13:58:41 by lbirloue          #+#    #+#             */
-/*   Updated: 2023/12/13 13:21:03 by lbirloue         ###   ########.fr       */
+/*   Updated: 2023/12/13 17:06:31 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,29 +170,27 @@ int		verif_map_possible(t_so_long *t_so_long)
 	fillPaths(t_so_long, t_so_long->element.player.player_x, t_so_long->element.player.player_y);
 	verif = verif_exit(t_so_long);
 	if (verif == -1)
-		return (-1);
-	printf("%d\n", t_so_long->verif.colectible_verif);
+		return (return_free_map_verif(t_so_long, t_so_long->map.map_y, -1));
+//	printf("%d\n", t_so_long->verif.colectible_verif);
 	if (t_so_long->verif.colectible_verif != 0)
 		return (return_free_map_verif(t_so_long, t_so_long->map.map_y, -1));
-	return (0);
+	return (return_free_map_verif(t_so_long, t_so_long->map.map_y, 0));
 }
 
 void fillPaths(t_so_long *t_so_long, int row, int col)
 {
 	// printf("row =%d | col = %d \n%d\n", row, col, t_so_long->map.map_y);
 	// printf("%c\n", t_so_long->verif.map_verif[row][col]);
-	printf("x = %d | y = %d\n", row, col);
-	printf("%s\n", t_so_long->verif.map_verif[1]);
-	printf("t_so_long->verif.map_verif[%d][%d] = %c\n", col, row, t_so_long->verif.map_verif[col][row]);
+	// printf("x = %d | y = %d\n", row, col);
+	// printf("%s\n", t_so_long->verif.map_verif[1]);
+	// printf("t_so_long->verif.map_verif[%d][%d] = %c\n", col, row, t_so_long->verif.map_verif[col][row]);
     if (row < 0 || col < 0 || col > t_so_long->map.map_y || row > t_so_long->map.map_x || t_so_long->verif.map_verif[col][row] == '1' || t_so_long->verif.map_verif[col][row] == 'V' || t_so_long->verif.map_verif[col][row] == '!')
 	{
-		printf("pasbon\n");
         return;
     }
-	printf("hu\n");
 	if (t_so_long->verif.map_verif[col][row] == 'C')
 	{
-		printf("%d\n", t_so_long->verif.colectible_verif);
+//		printf("%d\n", t_so_long->verif.colectible_verif);
 		t_so_long->verif.colectible_verif--;
 	}
 	t_so_long->verif.map_verif[col][row] = 'V';

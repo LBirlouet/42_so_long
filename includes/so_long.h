@@ -6,7 +6,7 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:19:31 by lbirloue          #+#    #+#             */
-/*   Updated: 2023/12/13 13:22:06 by lbirloue         ###   ########.fr       */
+/*   Updated: 2023/12/13 17:09:40 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,8 @@ void	display_loose(t_so_long *t_so_long);
 
 int error_msg(void);
 int	return_free_map_verif(t_so_long *t_so_long, int tab_nbr, int ret);
+
+int free_all_exit(t_so_long *t_so_long);
 
 int		collectible_update(t_so_long *t_so_long);
 int		possible_loose(t_so_long *t_so_long);

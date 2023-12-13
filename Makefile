@@ -6,7 +6,7 @@
 #    By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/26 18:14:38 by lbirloue          #+#    #+#              #
-#    Updated: 2023/12/13 12:05:34 by lbirloue         ###   ########.fr        #
+#    Updated: 2023/12/13 16:27:48 by lbirloue         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ MLX				= libmlx.a
 
 MLX_PATH		= mlx
 
-CC				= gcc
+CC				= cc
 
 RM				= rm -f
 

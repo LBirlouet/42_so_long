@@ -6,7 +6,7 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 19:11:42 by lbirloue          #+#    #+#             */
-/*   Updated: 2023/12/13 12:26:49 by lbirloue         ###   ########.fr       */
+/*   Updated: 2023/12/13 17:12:34 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int close_window(int keycode, t_so_long *t_so_long)
 {
 	(void) keycode;
 	mlx_destroy_window(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win);
-	exit(0);
+	return (free_all_exit(t_so_long));
 }
 
 int	display_collectible(t_so_long *t_so_long)
@@ -60,6 +60,7 @@ int	display_collectible(t_so_long *t_so_long)
 		}
 		i++;
 	}
+	mlx_string_put(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win, 0, 25, 0x00FF0000, "collectable 0 : 15");
 	return (0);
 }
 
@@ -73,6 +74,8 @@ int	display_fix(t_so_long *t_so_long, int rotation)
 	verif = display_enemy(t_so_long);
 	verif = display_player(t_so_long, rotation);
 	verif = display_heart(t_so_long);
+	mlx_string_put(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win, 0, 10, 0x00FF0000, "Moove :");
+	mlx_string_put(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win, 60, 10, 0x00FF0000, "0");
 	return (verif);
 }
 
@@ -331,7 +334,7 @@ int	escape(int keycode, t_so_long *t_so_long)
 	if (keycode == KEY_ESCAPE)
 	{
 		mlx_destroy_window((void *)t_so_long->mlx.mlx, (void *)t_so_long->mlx.mlx_win);
-		exit(0);
+		return (free_all_exit(t_so_long));
 	}
 	return (0);
 }
