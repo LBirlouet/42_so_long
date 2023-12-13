@@ -6,7 +6,7 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:08:15 by lbirloue          #+#    #+#             */
-/*   Updated: 2023/12/12 16:45:52 by lbirloue         ###   ########.fr       */
+/*   Updated: 2023/12/13 10:25:29 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	path(t_so_long *t_so_long)
 	t_so_long->img.path.path_loose = "./img/looseskull.xpm";
 	t_so_long->img.path.path_loosetxt = "./img/loose200x200.xpm";
 	t_so_long->img.path.path_enemy = "./img/enemy.xpm";
+	t_so_long->img.path.path_redheart = "./img/heartred.xpm";
+	t_so_long->img.path.path_deadheart = "./img/heartdead.xpm";
 
 
 	return ;
@@ -58,6 +60,8 @@ void	new_image(t_so_long *t_so_long)
 	t_so_long->img.imgloose = mlx_xpm_file_to_image(t_so_long->mlx.mlx, t_so_long->img.path.path_loose, &img_width, &img_height);
 	t_so_long->img.imgenemy = mlx_xpm_file_to_image(t_so_long->mlx.mlx, t_so_long->img.path.path_enemy, &img_width, &img_height);
 	t_so_long->img.imgloosetxt = mlx_xpm_file_to_image(t_so_long->mlx.mlx, t_so_long->img.path.path_loosetxt, &img_width, &img_height);
+	t_so_long->img.imgredheart = mlx_xpm_file_to_image(t_so_long->mlx.mlx, t_so_long->img.path.path_redheart, &img_width, &img_height);
+	t_so_long->img.imgdeadheart = mlx_xpm_file_to_image(t_so_long->mlx.mlx, t_so_long->img.path.path_deadheart, &img_width, &img_height);
 
 
 	t_so_long->img.imgback = mlx_xpm_file_to_image(t_so_long->mlx.mlx, t_so_long->img.path.path_back, &img_width, &img_height);
@@ -83,29 +87,43 @@ int		ft_strlen_before_newline(char *str)
 	return (i);
 }
 
-// int verif_gnl_wall_left_right(t_so_long *t_so_long, int side)
-// {
-// 	int i;
-// 	char *line;
+int	copy_map(t_so_long *t_so_long)
+{
+	int i;
+	int verif;
+	
+	i = 0;
+	t_so_long->verif.map_verif = malloc(sizeof(char*) * (t_so_long->map.map_y + 1));
+	if (!t_so_long->verif.map_verif)
+		return (-1);
+	while(i <= t_so_long->map.map_y)
+	{
+		t_so_long->verif.map_verif[i] = malloc(sizeof(char) * (t_so_long->map.map_x + 2));
+		if (!t_so_long->verif.map_verif[i])
+			return (-1);
+		i++;
+	}
+	verif = fill_map_verif(t_so_long);
+	return (0);
+}
 
-// 	i = 0;
-// 	t_so_long->map.map_fd = open(t_so_long->map.map_name, O_RDONLY, 0644);
-// 	if (side == 6)
-// 	{
-// 		printf("%d\n", t_so_long->element.player.player_x);
-// 		while (i < t_so_long->element.player.player_x)
-// 		{
-// 			line = get_next_line(t_so_long->map.map_fd);
-// 			printf("ouai %s\n", line);
-// 			free(line);
-// 			i++;
-// 		}
-// 		if (line[t_so_long->element.player.player_x - 1] == '1')
-// 			return (-1);
-// 		else
-// 			return (0);
-// 	}
-// 	close(t_so_long->map.map_fd);
-// 	return (0);
-// }
+int	fill_map_verif(t_so_long *t_so_long)
+{
+	int i;
+	int j;
 
+	i = 0;
+	j = 0;
+	while (i <= t_so_long->map.map_y)
+	{
+		j = 0;
+		while (j <= t_so_long->map.map_x)
+		{
+			t_so_long->verif.map_verif[i][j] = t_so_long->map.map[i][j];
+			j++;
+		}
+		t_so_long->verif.map_verif[i][j] = '\0';
+		i++;
+	}
+	return (0);
+}

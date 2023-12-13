@@ -6,7 +6,7 @@
 #    By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/26 18:14:38 by lbirloue          #+#    #+#              #
-#    Updated: 2023/12/12 17:51:44 by lbirloue         ###   ########.fr        #
+#    Updated: 2023/12/13 12:05:34 by lbirloue         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SRC				=	./srcs/main.c \
 	                ./srcs/display.c \
 	                ./srcs/move.c \
 	                ./srcs/so_long_utils.c \
+					./srcs/error_msg.c \
 	                ./srcs/malloc_map.c \
 					./srcs/gnl42/get_next_line_utils.c \
 					./srcs/gnl42/get_next_line.c \

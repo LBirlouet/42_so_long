@@ -6,7 +6,7 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:19:31 by lbirloue          #+#    #+#             */
-/*   Updated: 2023/12/12 17:42:07 by lbirloue         ###   ########.fr       */
+/*   Updated: 2023/12/13 13:22:06 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct s_exit {
 }				t_exit;
 
 typedef struct s_player {
+	int		rotation;
 	int		player_count;
 	int		player_x;
 	int		player_y;
@@ -81,6 +82,8 @@ typedef struct s_img_path {
 	char	*path_loose;
 	char	*path_loosetxt;	
 	char	*path_enemy;
+	char	*path_redheart;
+	char	*path_deadheart;
 }				t_img_path;
 
 typedef struct s_img {
@@ -97,6 +100,8 @@ typedef struct s_img {
 	void	*imgloose;
 	void	*imgloosetxt;
 	void	*imgenemy;
+	void	*imgredheart;
+	void	*imgdeadheart;
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
@@ -117,12 +122,19 @@ typedef struct s_map {
 	char	**map;
 }				t_map;
 
+typedef struct s_verif {
+	int		colectible_verif;
+	char	**map_verif;
+}				t_verif;
+
 typedef struct s_so_long {
 	t_map_element	element;
 	t_img			img;
 	t_mlx			mlx;
 	t_map			map;
+	t_verif			verif;
 	int				status;
+	int				heart;
 	int				moove_nbr;
 }				t_so_long;
 
@@ -136,8 +148,12 @@ int		display_exit(t_so_long *t_so_long);
 int		display_player(t_so_long *t_so_long, int rotation);
 int		display_collectible(t_so_long *t_so_long);
 int		display_enemy(t_so_long *t_so_long);
+int	display_heart(t_so_long *t_so_long);
 void	display_win(t_so_long *t_so_long);
 void	display_loose(t_so_long *t_so_long);
+
+int error_msg(void);
+int	return_free_map_verif(t_so_long *t_so_long, int tab_nbr, int ret);
 
 int		collectible_update(t_so_long *t_so_long);
 int		possible_loose(t_so_long *t_so_long);
@@ -169,6 +185,19 @@ int		verif_line(char *map, int line_size, t_so_long *t_so_long, int line_counter
 int		verif_first_line(char *map);
 int		verif_last_line(int line_counter, t_so_long *t_so_long);
 int 	verif_gnl_wall_left_right(t_so_long *t_so_long, int side);
+
+
+int		verif_map_possible(t_so_long *t_so_long);
+int		verif_recursive(t_so_long *t_so_long);
+int		copy_map(t_so_long *t_so_long);
+int		fill_map_verif(t_so_long *t_so_long);
+
+
+/*test*/
+
+// void printMap(char map[][]);
+void fillPaths(t_so_long *t_so_long, int row, int col);
+/*fintests*/
 
 
 

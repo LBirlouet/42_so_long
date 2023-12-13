@@ -6,7 +6,7 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 19:11:42 by lbirloue          #+#    #+#             */
-/*   Updated: 2023/12/12 17:32:07 by lbirloue         ###   ########.fr       */
+/*   Updated: 2023/12/13 12:26:49 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,31 @@ int	display_fix(t_so_long *t_so_long, int rotation)
 	verif = display_exit(t_so_long);
 	verif = display_enemy(t_so_long);
 	verif = display_player(t_so_long, rotation);
+	verif = display_heart(t_so_long);
 	return (verif);
+}
+
+int	display_heart(t_so_long *t_so_long)
+{
+	if (t_so_long->heart == 2)
+	{
+		mlx_put_image_to_window(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win, t_so_long->img.imgredheart,((t_so_long->map.map_x - 3) * 100), (0));
+		mlx_put_image_to_window(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win, t_so_long->img.imgredheart,((t_so_long->map.map_x - 2) * 100), (0));
+		mlx_put_image_to_window(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win, t_so_long->img.imgredheart,((t_so_long->map.map_x - 1) * 100), (0));
+	}
+	else if (t_so_long->heart == 1)
+	{
+		mlx_put_image_to_window(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win, t_so_long->img.imgredheart,((t_so_long->map.map_x - 3) * 100), (0));
+		mlx_put_image_to_window(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win, t_so_long->img.imgredheart,((t_so_long->map.map_x - 2) * 100), (0));
+		mlx_put_image_to_window(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win, t_so_long->img.imgdeadheart,((t_so_long->map.map_x - 1) * 100), (0));
+	}
+	else if (t_so_long->heart == 0)
+	{
+		mlx_put_image_to_window(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win, t_so_long->img.imgredheart,((t_so_long->map.map_x - 3) * 100), (0));
+		mlx_put_image_to_window(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win, t_so_long->img.imgdeadheart,((t_so_long->map.map_x - 2) * 100), (0));
+		mlx_put_image_to_window(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win, t_so_long->img.imgdeadheart,((t_so_long->map.map_x - 1) * 100), (0));
+	}
+	return (0);
 }
 
 int	display_enemy(t_so_long *t_so_long)
@@ -223,21 +247,29 @@ int	possible_loose(t_so_long *t_so_long)
 {
 	int i;
 	int j;
-	// printf("%s\n", t_so_long->map.map[1]);
-	// printf("oui\n");
+
 	i = t_so_long->element.player.player_x;
 	j = t_so_long->element.player.player_y;
-	// printf("%d | %d\n", i, j);
-	if (t_so_long->map.map[j][i] == '!')
+	if (t_so_long->map.map[j][i] == '!' && t_so_long->heart != 0)
 	{
-	//	printf("vient\n");
+		t_so_long->heart--;
+		if (t_so_long->element.player.rotation == 4)
+			t_so_long->element.player.player_x += 1;
+		else if (t_so_long->element.player.rotation == 6)
+			t_so_long->element.player.player_x -= 1;
+		else if (t_so_long->element.player.rotation == 2)
+			t_so_long->element.player.player_y -= 1;
+		else if (t_so_long->element.player.rotation == 8)
+			t_so_long->element.player.player_y += 1;
+		display_fix(t_so_long, t_so_long->element.player.rotation);
+		display_collectible(t_so_long);
+		return (0);
+	}
+	if (t_so_long->map.map[j][i] == '!' && t_so_long->heart == 0)
+	{
 		display_loose(t_so_long);
 		t_so_long->status = 1;
-		// printf("non %s\n", t_so_long->map.map[j]);
-	//	mlx_destroy_window((void *)t_so_long->mlx.mlx, (void *)t_so_long->mlx.mlx_win);
-	//	exit (0);
 	}
-	
 	return (0);	
 }
 
@@ -252,17 +284,13 @@ void	display_loose(t_so_long *t_so_long)
 		j = 0;
 		while (j <= t_so_long->map.map_x)
 		{
-		//	printf("et ici ? \n");
 			mlx_put_image_to_window(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win, t_so_long->img.imgback, (j * 100), (i* 100));
 			j++;
 		}
 		i++;
 	}
-//	printf("revient\n");
-	
 	mlx_put_image_to_window(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win, t_so_long->img.imgloose, (((t_so_long->map.map_x - 2) *100) / 2), (((t_so_long->map.map_y - 3)* 100) / 2));
 	mlx_put_image_to_window(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win, t_so_long->img.imgloosetxt, (((t_so_long->map.map_x - 2) *100) / 2), (((t_so_long->map.map_y + 1 )* 100) / 2));
-//	mlx_string_put(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win,((t_so_long->map.map_x * 100)/2) , ((t_so_long->map.map_y * 100)/2), 0xfffafa, "YOU LOOSE !");
 }
 
 void	display_win(t_so_long *t_so_long)
@@ -272,8 +300,6 @@ void	display_win(t_so_long *t_so_long)
 	int j;
 
 	i = 0;
-//	printf("map X == %d\n", t_so_long->map.map_x);
-//	printf("map X= %d| map y= %d\n", t_so_long->map.map_y, t_so_long->map.map_y);
 
 	while (i <= t_so_long->map.map_y)
 	{
@@ -288,9 +314,6 @@ void	display_win(t_so_long *t_so_long)
 	mlx_put_image_to_window(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win, t_so_long->img.imgwin, (((t_so_long->map.map_x - 1) *100) / 2), (((t_so_long->map.map_y - 2)* 100) / 2));
 	mlx_put_image_to_window(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win, t_so_long->img.imgwintxt, (((t_so_long->map.map_x - 2) *100) / 2), (((t_so_long->map.map_y )* 100) / 2));
 	t_so_long->status = 1;
-//	mlx_destroy_window((void *)t_so_long->mlx.mlx, (void *)t_so_long->mlx.mlx_win);
-//	exit(0);
-	
 }
 
 int	probable_win(t_so_long *t_so_long)
@@ -306,7 +329,7 @@ int	probable_win(t_so_long *t_so_long)
 int	escape(int keycode, t_so_long *t_so_long)
 {
 	if (keycode == KEY_ESCAPE)
-		{
+	{
 		mlx_destroy_window((void *)t_so_long->mlx.mlx, (void *)t_so_long->mlx.mlx_win);
 		exit(0);
 	}

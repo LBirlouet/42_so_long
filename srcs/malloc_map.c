@@ -6,7 +6,7 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 08:04:30 by lbirloue          #+#    #+#             */
-/*   Updated: 2023/12/12 17:31:14 by lbirloue         ###   ########.fr       */
+/*   Updated: 2023/12/13 10:18:41 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int malloc_map(t_so_long *t_so_long)
 {
 	int i;
 	int verif;
-	
+
 	i = 0;
 	t_so_long->map.map = malloc(sizeof(char*) * (t_so_long->map.map_y + 1));
 	if (!t_so_long->map.map)
