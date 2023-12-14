@@ -6,43 +6,43 @@
 #    By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/26 18:14:38 by lbirloue          #+#    #+#              #
-#    Updated: 2023/12/14 13:59:40 by lbirloue         ###   ########.fr        #
+#    Updated: 2023/12/14 19:17:00 by lbirloue         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME			= so_long
 
-SRC				=	./srcs/main.c \
-					./srcs/verif.c \
-					./srcs/verif_map.c \
-					./srcs/verif_line.c \
-	                ./srcs/display.c \
-					./srcs/all_display/display_back.c \
-					./srcs/all_display/display_wall.c \
-					./srcs/all_display/display_player.c \
-					./srcs/all_display/display_exit.c \
-					./srcs/all_display/display_enemy.c \
-					./srcs/all_display/display_heart.c \
-					./srcs/all_display/display_win.c \
-					./srcs/all_display/display_loose.c \
-					./srcs/all_display/display_collectible.c \
-					./srcs/all_display/display_score.c \
-					./srcs/all_display/display_move.c \
-					./srcs/all_display/display_collectible_nbr.c \
-					./srcs/possible.c \
-					./srcs/move.c \
-					./srcs/ft_itoa.c \
-					./srcs/key_press.c \
-					./srcs/so_long_utils.c \
-					./srcs/initialisation.c \
-					./srcs/initialisation2.c \
-					./srcs/error_msg.c \
-					./srcs/malloc_map.c \
-					./srcs/gnl42/get_next_line_utils.c \
-					./srcs/gnl42/get_next_line.c \
-				
-OBJ				= ${SRC:.c=.o}
+SRC_BONUS			=	./srcs_bonus/main.c \
+					./srcs_bonus/verif.c \
+					./srcs_bonus/verif_map.c \
+					./srcs_bonus/verif_line.c \
+					./srcs_bonus/display.c \
+					./srcs_bonus/all_display/display_back.c \
+					./srcs_bonus/all_display/display_wall.c \
+					./srcs_bonus/all_display/display_player.c \
+					./srcs_bonus/all_display/display_exit.c \
+					./srcs_bonus/all_display/display_enemy.c \
+					./srcs_bonus/all_display/display_heart.c \
+					./srcs_bonus/all_display/display_win.c \
+					./srcs_bonus/all_display/display_loose.c \
+					./srcs_bonus/all_display/display_collectible.c \
+					./srcs_bonus/all_display/display_score.c \
+					./srcs_bonus/all_display/display_move.c \
+					./srcs_bonus/all_display/display_collectible_nbr.c \
+					./srcs_bonus/possible.c \
+					./srcs_bonus/move.c \
+					./srcs_bonus/ft_itoa.c \
+					./srcs_bonus/key_press.c \
+					./srcs_bonus/so_long_utils.c \
+					./srcs_bonus/initialisation.c \
+					./srcs_bonus/initialisation2.c \
+					./srcs_bonus/error_msg.c \
+					./srcs_bonus/malloc_map.c \
+					./srcs_bonus/gnl42/get_next_line_utils.c \
+					./srcs_bonus/gnl42/get_next_line.c \
+
+OBJ_BONUS				= ${SRC_BONUS:.c=.o}
 
 FT_PRINTF		= libftprintf.a
 
@@ -64,8 +64,8 @@ MLX_FLAGS		= -L. -lmlx -framework OpenGL -framework AppKit
 	$(CC) $(C_FLAGS) -c $< -o $@
 
 all: ${NAME}
-${NAME}: ${OBJ} ${FT_PRINTF} ${MLX} 
-	${CC} ${OBJ} -o ${NAME} ${FT_PRINTF} ${MLX_FLAGS} ${MLX} 
+${NAME}: ${OBJ_BONUS} ${FT_PRINTF} ${MLX} 
+	${CC} ${OBJ_BONUS} -o ${NAME} ${FT_PRINTF} ${MLX_FLAGS} ${MLX} 
 
 ${FT_PRINTF}:
 	${MAKE} -C ${FT_PRINTF_PATH}
@@ -78,7 +78,7 @@ ${MLX}:
 clean:
 	${MAKE} clean -C ${FT_PRINTF_PATH}
 	${MAKE} clean -C ${MLX_PATH}
-	${RM} ${OBJ}
+	${RM} ${OBJ_BONUS}
 
 fclean: clean
 	${RM} ${NAME} ${FT_PRINTF} ${MLX} 
