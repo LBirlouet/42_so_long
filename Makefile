@@ -6,7 +6,7 @@
 #    By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/26 18:14:38 by lbirloue          #+#    #+#              #
-#    Updated: 2023/12/13 19:18:28 by lbirloue         ###   ########.fr        #
+#    Updated: 2023/12/14 13:59:40 by lbirloue         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,8 @@ NAME			= so_long
 
 SRC				=	./srcs/main.c \
 					./srcs/verif.c \
+					./srcs/verif_map.c \
+					./srcs/verif_line.c \
 	                ./srcs/display.c \
 					./srcs/all_display/display_back.c \
 					./srcs/all_display/display_wall.c \
@@ -25,10 +27,16 @@ SRC				=	./srcs/main.c \
 					./srcs/all_display/display_win.c \
 					./srcs/all_display/display_loose.c \
 					./srcs/all_display/display_collectible.c \
+					./srcs/all_display/display_score.c \
+					./srcs/all_display/display_move.c \
+					./srcs/all_display/display_collectible_nbr.c \
 					./srcs/possible.c \
 					./srcs/move.c \
+					./srcs/ft_itoa.c \
 					./srcs/key_press.c \
 					./srcs/so_long_utils.c \
+					./srcs/initialisation.c \
+					./srcs/initialisation2.c \
 					./srcs/error_msg.c \
 					./srcs/malloc_map.c \
 					./srcs/gnl42/get_next_line_utils.c \

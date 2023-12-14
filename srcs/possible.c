@@ -6,7 +6,7 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 19:15:21 by lbirloue          #+#    #+#             */
-/*   Updated: 2023/12/13 19:16:56 by lbirloue         ###   ########.fr       */
+/*   Updated: 2023/12/14 15:59:14 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ int	possible_loose(t_so_long *t_so_long)
 	}
 	if (t_so_long->map.map[j][i] == '!' && t_so_long->heart == 0)
 	{
-		display_loose(t_so_long);
+		t_so_long->anim_x = (t_so_long->map.map_x / 2);
+		t_so_long->anim_y = (t_so_long->map.map_y / 2);
+		mlx_loop_hook(t_so_long->mlx.mlx, (int (*)(void *))display_loose_anim, t_so_long);
 		t_so_long->status = 1;
 	}
 	return (0);

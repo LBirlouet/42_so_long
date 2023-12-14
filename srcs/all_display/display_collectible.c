@@ -6,7 +6,7 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 19:18:29 by lbirloue          #+#    #+#             */
-/*   Updated: 2023/12/13 19:19:20 by lbirloue         ###   ########.fr       */
+/*   Updated: 2023/12/14 13:31:15 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,5 @@ int	display_collectible(t_so_long *t_so_long)
 		}
 		i++;
 	}
-	mlx_string_put(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win,
-		0, 25, 0x00FF0000, "collectable 0 : 15");
 	return (0);
 }

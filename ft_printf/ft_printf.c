@@ -6,7 +6,7 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 17:04:34 by lbirloue          #+#    #+#             */
-/*   Updated: 2023/12/12 17:48:24 by lbirloue         ###   ########.fr       */
+/*   Updated: 2023/12/14 09:46:07 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,17 +55,3 @@ int	ft_printf(const char *str, ...)
 	va_end(lst);
 	return (i);
 }
-
-
-// #include "stdio.h"
-
-// int main()
-// {
-// 	unsigned char const *s;
-
-
-// 	printf("%d\n", ft_printf("%%%%%\n"));
-
-// 	printf("%d\n", printf("%%%%%\n"));
-
-// }

@@ -6,7 +6,7 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:19:31 by lbirloue          #+#    #+#             */
-/*   Updated: 2023/12/13 19:22:35 by lbirloue         ###   ########.fr       */
+/*   Updated: 2023/12/14 15:39:24 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@
 # define KEY_A 0
 # define KEY_D 2
 # define KEY_ESCAPE	53
-
-
 
 typedef struct s_colectible {
 	int		colectible_count;
@@ -84,28 +82,30 @@ typedef struct s_img_path {
 	char	*path_enemy;
 	char	*path_redheart;
 	char	*path_deadheart;
+	char	*path_display_score;
 }				t_img_path;
 
 typedef struct s_img {
-	void	*imgback;
-	void	*imgwall;
-	void	*imgplayer_top;
-	void	*imgplayer_bot;
-	void	*imgplayer_left;
-	void	*imgplayer_right;
-	void	*imgexit;
-	void	*imgcollectible;	
-	void	*imgwin;
-	void	*imgwintxt;
-	void	*imgloose;
-	void	*imgloosetxt;
-	void	*imgenemy;
-	void	*imgredheart;
-	void	*imgdeadheart;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
+	void		*imgback;
+	void		*imgwall;
+	void		*imgplayer_top;
+	void		*imgplayer_bot;
+	void		*imgplayer_left;
+	void		*imgplayer_right;
+	void		*imgexit;
+	void		*imgcollectible;	
+	void		*imgwin;
+	void		*imgwintxt;
+	void		*imgloose;
+	void		*imgloosetxt;
+	void		*imgenemy;
+	void		*imgredheart;
+	void		*imgdeadheart;
+	void		*imgdisplay_score;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
 	t_img_path	path;
 }				t_img;
 
@@ -135,12 +135,13 @@ typedef struct s_so_long {
 	t_verif			verif;
 	int				status;
 	int				heart;
-	int				moove_nbr;
+	int				move_nbr;
+	int				anim_x;
+	int				anim_y;
 }				t_so_long;
 
-int 	main(int argc, char **argv);
+int		main(int argc, char **argv);
 int		display(t_so_long *t_so_long);
-
 int		display_fix(t_so_long *t_so_long, int rotation);
 int		display_back(t_so_long *t_so_long);
 int		display_wall(t_so_long *t_so_long);
@@ -148,72 +149,58 @@ int		display_exit(t_so_long *t_so_long);
 int		display_player(t_so_long *t_so_long, int rotation);
 int		display_collectible(t_so_long *t_so_long);
 int		display_enemy(t_so_long *t_so_long);
-int	display_heart(t_so_long *t_so_long);
+int		display_heart(t_so_long *t_so_long);
 void	display_heart2(t_so_long *t_so_long);
 void	display_heart1(t_so_long *t_so_long);
 void	display_heart0(t_so_long *t_so_long);
-
-
 void	display_win(t_so_long *t_so_long);
 void	display_loose(t_so_long *t_so_long);
-
-int error_msg(void);
-int	return_free_map_verif(t_so_long *t_so_long, int tab_nbr, int ret);
-
-int free_all_exit(t_so_long *t_so_long);
-
+void	exit_count_pos(t_so_long *t_so_long, int i, int line_counter);
+void	player_count_pos(t_so_long *t_so_long, int i, int line_counter);
+int		error_msg(void);
+int		return_free_map_verif(t_so_long *t_so_long, int tab_nbr, int ret);
+int		free_all_exit(t_so_long *t_so_long);
 int		collectible_update(t_so_long *t_so_long);
 int		possible_loose(t_so_long *t_so_long);
-
 int		verif_wall(t_so_long *t_so_long, int side, int x);
 int		escape(int keycode, t_so_long *t_so_long);
-int	 close_window(int keycode, t_so_long *t_so_long);
-
-/*move fonctions*/
-int		moove(int keycode, t_so_long *t_so_long);
+int		close_window(int keycode, t_so_long *t_so_long);
+int		move(int keycode, t_so_long *t_so_long);
 int		handle_key_press(int keycode, t_so_long *t_so_long);
-int		moove_down(t_so_long *t_so_long);
-int		moove_up(t_so_long *t_so_long);
-int		moove_left(t_so_long *t_so_long);
-int		moove_right(t_so_long *t_so_long);
-
-
-int	possible_win(t_so_long *t_so_long);
-
+int		move_down(t_so_long *t_so_long);
+int		move_up(t_so_long *t_so_long);
+int		move_left(t_so_long *t_so_long);
+int		move_right(t_so_long *t_so_long);
+int		possible_win(t_so_long *t_so_long);
 void	path(t_so_long *t_so_long);
 void	new_image(t_so_long *t_so_long);
-//static int	ft_strlen(char *str);
-
-/*map verif*/
-
-int 	verif_map(t_so_long *t_so_long);
+void	new_image2(t_so_long *t_so_long);
+void	init_verif_map(t_so_long *t_so_long);
+int		ret_free_line(char *line);
+int		verif_map(t_so_long *t_so_long, int line_counter,
+			int line_size, int verif);
+int		verif_map2(t_so_long *t_so_long, int line_size, int line_counter);
 int		element_verif(t_so_long *t_so_long);
-int		verif_line(char *map, int line_size, t_so_long *t_so_long, int line_counter);
+int		verif_line(char *map, int line_size, t_so_long *t_so_long,
+			int line_counter);
 int		verif_first_line(char *map);
-int		verif_last_line(int line_counter, t_so_long *t_so_long);
-int 	verif_gnl_wall_left_right(t_so_long *t_so_long, int side);
-
-
+int		verif_last_line(int line_counter, t_so_long *t_so_long,
+			int verif, int i);
+int		verif_gnl_wall_left_right(t_so_long *t_so_long, int side);
 int		verif_map_possible(t_so_long *t_so_long);
 int		verif_recursive(t_so_long *t_so_long);
 int		copy_map(t_so_long *t_so_long);
 int		fill_map_verif(t_so_long *t_so_long);
-
-
-/*test*/
-
-// void printMap(char map[][]);
-void fillPaths(t_so_long *t_so_long, int row, int col);
-/*fintests*/
-
-
-
-/*malloc and fill map*/
-int malloc_map(t_so_long *t_so_long);
-int	fill_map(t_so_long *t_so_long);
-
-/*utils*/
-int	ft_strlen_before_newline(char *str);
-
+void	fillpaths(t_so_long *t_so_long, int row, int col);
+int		malloc_map(t_so_long *t_so_long);
+int		fill_map(t_so_long *t_so_long);
+int		ft_strlen_before_newline(char *str);
+int		verif_arg(int argc, char *str);
+int		malloc_map_error_msg(void);
+int	display_score(t_so_long *t_so_long);
+void	display_move_nbr(t_so_long *t_so_long);
+void	display_collectible_nbr(t_so_long *t_so_long);
+int		display_loose_anim(t_so_long *t_so_long);
+char	*ft_itoa(int n);
 
 #endif

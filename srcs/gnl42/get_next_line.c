@@ -6,7 +6,7 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 17:38:44 by lbirloue          #+#    #+#             */
-/*   Updated: 2023/12/04 13:33:50 by lbirloue         ###   ########.fr       */
+/*   Updated: 2023/12/14 11:24:22 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,22 +105,3 @@ char	*get_next_line(int fd)
 	tempo = refresh(tempo);
 	return (ret);
 }
-
-//  #include <fcntl.h>
-// int main()
-// {
-// 	char	*line = NULL;
-// 	int fd = open("test", O_RDONLY, 0644);
-
-// 	if (fd == -1)
-// 		return (1);
-// 	line = get_next_line(fd);
-// 	printf("%s", line);
-// 	while (line)
-// 	{
-// 		free(line);
-// 		line = get_next_line(fd);
-// 		printf("%s", line);
-// 	}
-// 	return (0);
-// }

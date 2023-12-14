@@ -6,7 +6,7 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 19:11:42 by lbirloue          #+#    #+#             */
-/*   Updated: 2023/12/13 19:22:11 by lbirloue         ###   ########.fr       */
+/*   Updated: 2023/12/14 15:58:04 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,23 @@ int	display(t_so_long *t_so_long)
 	int	verif;
 
 	path(t_so_long);
-	t_so_long->moove_nbr = 0;
+	t_so_long->move_nbr = 0;
 	t_so_long->mlx.mlx = mlx_init();
 	t_so_long->mlx.mlx_win = mlx_new_window(t_so_long->mlx.mlx,
 			(t_so_long->map.map_x * 100), ((t_so_long->map.map_y + 1) * 100),
 			"so_long");
 	new_image(t_so_long);
 	t_so_long->status = 0;
+
+		printf("ic\n");
 	verif = display_fix(t_so_long, 8);
 	verif = display_collectible(t_so_long);
 	mlx_hook(t_so_long->mlx.mlx_win, 2, 0, &handle_key_press, t_so_long);
 	mlx_hook(t_so_long->mlx.mlx_win, 17, 0, &close_window, t_so_long);
+	//test
+//	if (t_so_long->status == 1)
+		
+	// fin test
 	mlx_loop(t_so_long->mlx.mlx);
 	return (0);
 }
@@ -42,10 +48,9 @@ int	display_fix(t_so_long *t_so_long, int rotation)
 	verif = display_enemy(t_so_long);
 	verif = display_player(t_so_long, rotation);
 	verif = display_heart(t_so_long);
-	mlx_string_put(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win,
-		0, 10, 0x00FF0000, "Moove :");
-	mlx_string_put(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win,
-		60, 10, 0x00FF0000, "0");
+	verif = display_score(t_so_long);
+	display_move_nbr(t_so_long);
+	display_collectible_nbr(t_so_long);
 	return (verif);
 }
 

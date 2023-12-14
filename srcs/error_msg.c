@@ -6,7 +6,7 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 12:05:04 by lbirloue          #+#    #+#             */
-/*   Updated: 2023/12/13 19:24:38 by lbirloue         ###   ########.fr       */
+/*   Updated: 2023/12/14 14:44:10 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,19 @@ int	error_msg(void)
 
 int	return_free_map_verif(t_so_long *t_so_long, int tab_nbr, int ret)
 {
+	// t_so_long->map.map[9][1] = '_';
+	// 	printf("tab[%d] == %p\n", 10, t_so_long->verif.map_verif[10]);
+
 	while (tab_nbr >= 0)
 	{
+//		printf("%s\ntab[%d] == %p\n",t_so_long->verif.map_verif[tab_nbr], tab_nbr, t_so_long->verif.map_verif[tab_nbr]);
 		free(t_so_long->verif.map_verif[tab_nbr]);
 		t_so_long->verif.map_verif[tab_nbr] = NULL;
 		tab_nbr--;
 	}
 	free(t_so_long->verif.map_verif);
 	t_so_long->verif.map_verif = NULL;
+	//system("leaks so_long");
 	return (ret);
 }
 
@@ -47,4 +52,10 @@ int	free_all_exit(t_so_long *t_so_long)
 	t_so_long->map.map = NULL;
 	system("leaks so_long");
 	exit (0);
+}
+
+int	malloc_map_error_msg(void)
+{
+	ft_printf("Error\nMalloc error\n");
+	return (-1);
 }
