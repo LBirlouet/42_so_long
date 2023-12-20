@@ -6,7 +6,7 @@
 #    By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/26 18:14:38 by lbirloue          #+#    #+#              #
-#    Updated: 2023/12/20 12:45:36 by lbirloue         ###   ########.fr        #
+#    Updated: 2023/12/20 13:20:41 by lbirloue         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,9 +23,6 @@ SRC_MANDATORY		=	./srcs_mandatory/main.c \
 					./srcs_mandatory/all_display/display_player.c \
 					./srcs_mandatory/all_display/display_exit.c \
 					./srcs_mandatory/all_display/display_collectible.c \
-					./srcs_mandatory/all_display/display_score.c \
-					./srcs_mandatory/all_display/display_move.c \
-					./srcs_mandatory/all_display/display_collectible_nbr.c \
 					./srcs_mandatory/possible.c \
 					./srcs_mandatory/move.c \
 					./srcs_mandatory/ft_itoa.c \
