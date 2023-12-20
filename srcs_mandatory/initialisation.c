@@ -6,7 +6,7 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 09:41:48 by lbirloue          #+#    #+#             */
-/*   Updated: 2023/12/14 18:44:07 by lbirloue         ###   ########.fr       */
+/*   Updated: 2023/12/20 12:30:26 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,49 +22,21 @@ void	path(t_so_long *t_so_long)
 	t_so_long->img.path.path_player_left = "./img/player_left.xpm";
 	t_so_long->img.path.path_player_right = "./img/player_right.xpm";
 	t_so_long->img.path.path_collectible = "./img/collectible.xpm";
-	t_so_long->img.path.path_win = "./img/win_test.xpm";
-	t_so_long->img.path.path_wintxt = "./img/wintxt.xpm";
-	t_so_long->img.path.path_loose = "./img/looseskull.xpm";
-	t_so_long->img.path.path_loosetxt = "./img/loose200x200.xpm";
-	t_so_long->img.path.path_enemy = "./img/enemy.xpm";
-	t_so_long->img.path.path_redheart = "./img/heartred.xpm";
-	t_so_long->img.path.path_deadheart = "./img/heartdead.xpm";
-	t_so_long->img.path.path_display_score = "./img/display_score.xpm";
 	return ;
 }
 
-void	new_image(t_so_long *t_so_long)
-{
-	int	img_width;
-	int	img_height;
-
-	t_so_long->img.imgwin = mlx_xpm_file_to_image(t_so_long->mlx.mlx,
-			t_so_long->img.path.path_win, &img_width, &img_height);
-	t_so_long->img.imgwintxt = mlx_xpm_file_to_image(t_so_long->mlx.mlx,
-			t_so_long->img.path.path_wintxt, &img_width, &img_height);
-	t_so_long->img.imgloose = mlx_xpm_file_to_image(t_so_long->mlx.mlx,
-			t_so_long->img.path.path_loose, &img_width, &img_height);
-	t_so_long->img.imgenemy = mlx_xpm_file_to_image(t_so_long->mlx.mlx,
-			t_so_long->img.path.path_enemy, &img_width, &img_height);
-	t_so_long->img.imgloosetxt = mlx_xpm_file_to_image(t_so_long->mlx.mlx,
-			t_so_long->img.path.path_loosetxt, &img_width, &img_height);
-	t_so_long->img.imgredheart = mlx_xpm_file_to_image(t_so_long->mlx.mlx,
-			t_so_long->img.path.path_redheart, &img_width, &img_height);
-	t_so_long->img.imgdeadheart = mlx_xpm_file_to_image(t_so_long->mlx.mlx,
-			t_so_long->img.path.path_deadheart, &img_width, &img_height);
-	t_so_long->img.imgdisplay_score = mlx_xpm_file_to_image(t_so_long->mlx.mlx,
-			t_so_long->img.path.path_display_score, &img_width, &img_height);
-	new_image2(t_so_long);
-	return ;
-}
-
-void	new_image2(t_so_long *t_so_long)
+int	new_image(t_so_long *t_so_long)
 {
 	int	img_width;
 	int	img_height;
 
 	t_so_long->img.imgback = mlx_xpm_file_to_image(t_so_long->mlx.mlx,
 			t_so_long->img.path.path_back, &img_width, &img_height);
+	return (new_image2(t_so_long, img_width, img_height));
+}
+
+int	new_image2(t_so_long *t_so_long, int img_width, int img_height)
+{
 	t_so_long->img.imgwall = mlx_xpm_file_to_image(t_so_long->mlx.mlx,
 			t_so_long->img.path.path_wall, &img_width, &img_height);
 	t_so_long->img.imgexit = mlx_xpm_file_to_image(t_so_long->mlx.mlx,
@@ -79,7 +51,13 @@ void	new_image2(t_so_long *t_so_long)
 			t_so_long->img.path.path_player_right, &img_width, &img_height);
 	t_so_long->img.imgcollectible = mlx_xpm_file_to_image(t_so_long->mlx.mlx,
 			t_so_long->img.path.path_collectible, &img_width, &img_height);
-	return ;
+	if ((!t_so_long->img.imgback) || (!t_so_long->img.imgwall)
+		|| (!t_so_long->img.imgexit) || (!t_so_long->img.imgplayer_top)
+		|| (!t_so_long->img.imgplayer_bot) || (!t_so_long->img.imgplayer_left)
+		|| (!t_so_long->img.imgplayer_right)
+		|| (!t_so_long->img.imgcollectible))
+		return (-1);
+	return (0);
 }
 
 void	exit_count_pos(t_so_long *t_so_long, int i, int line_counter)

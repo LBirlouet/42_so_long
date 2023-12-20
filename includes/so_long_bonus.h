@@ -6,7 +6,7 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:19:31 by lbirloue          #+#    #+#             */
-/*   Updated: 2023/12/14 19:23:48 by lbirloue         ###   ########.fr       */
+/*   Updated: 2023/12/20 11:38:10 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,6 +171,7 @@ int		error_msg(void);
 int		escape(int keycode, t_so_long *t_so_long);
 void	exit_count_pos(t_so_long *t_so_long, int i, int line_counter);
 int		fill_map(t_so_long *t_so_long);
+int		return_free_map_malloc(t_so_long *t_so_long, int tab_nbr, int ret);
 int		fill_map_verif(t_so_long *t_so_long);
 void	fillpaths(t_so_long *t_so_long, int row, int col);
 int		free_all_exit(t_so_long *t_so_long);
@@ -186,8 +187,8 @@ int		move_down(t_so_long *t_so_long);
 int		move_left(t_so_long *t_so_long);
 int		move_right(t_so_long *t_so_long);
 int		move_up(t_so_long *t_so_long);
-void	new_image(t_so_long *t_so_long);
-void	new_image2(t_so_long *t_so_long);
+int		new_image(t_so_long *t_so_long);
+int		new_image2(t_so_long *t_so_long, int img_width, int img_height);
 void	path(t_so_long *t_so_long);
 void	player_count_pos(t_so_long *t_so_long, int i, int line_counter);
 int		possible_loose(t_so_long *t_so_long);

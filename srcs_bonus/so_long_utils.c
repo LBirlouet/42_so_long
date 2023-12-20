@@ -6,7 +6,7 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:08:15 by lbirloue          #+#    #+#             */
-/*   Updated: 2023/12/14 18:44:07 by lbirloue         ###   ########.fr       */
+/*   Updated: 2023/12/20 11:12:00 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	ft_strlen_before_newline(char *str)
 	int	i;
 
 	i = 0;
+	if (!str)
+		return (0);
 	while (str[i] != 0 && str[i] != '\n')
 		i++;
 	return (i);

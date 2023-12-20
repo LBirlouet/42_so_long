@@ -6,7 +6,7 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 18:12:06 by lbirloue          #+#    #+#             */
-/*   Updated: 2023/12/14 18:44:07 by lbirloue         ###   ########.fr       */
+/*   Updated: 2023/12/20 12:34:50 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	handle_key_press(int keycode, t_so_long *t_so_long)
 	{
 		verif = move(keycode, t_so_long);
 		verif = possible_win(t_so_long);
-		verif = possible_loose(t_so_long);
 	}
 	verif = escape(keycode, t_so_long);
 	return (0);

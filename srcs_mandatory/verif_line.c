@@ -6,7 +6,7 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 09:30:21 by lbirloue          #+#    #+#             */
-/*   Updated: 2023/12/14 18:44:07 by lbirloue         ###   ########.fr       */
+/*   Updated: 2023/12/20 12:38:03 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	verif_line(char *map, int line_size, t_so_long *t_so_long, int line_counter)
 	int	i;
 
 	i = 0;
-	if (map[0] != '1' || map[line_size] != '1')
+	if (!map || map[0] != '1' || map[line_size] != '1')
 		return (-1);
 	while (i < line_size)
 	{
@@ -27,12 +27,8 @@ int	verif_line(char *map, int line_size, t_so_long *t_so_long, int line_counter)
 			exit_count_pos(t_so_long, i, line_counter);
 		if (map[i] == 'P')
 			player_count_pos(t_so_long, i, line_counter);
-		if (map[i] == '!')
-		{
-			t_so_long->element.enemy.enemy_count++;
-		}
 		if (map[i] != '1' && map[i] != '0' && map[i] != 'P' 
-			&& map[i] != 'C' && map[i] != 'E' && map[i] != '!')
+			&& map[i] != 'C' && map[i] != 'E')
 			return (-1);
 		i++;
 	}

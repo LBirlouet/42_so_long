@@ -6,7 +6,7 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 19:11:42 by lbirloue          #+#    #+#             */
-/*   Updated: 2023/12/14 18:44:07 by lbirloue         ###   ########.fr       */
+/*   Updated: 2023/12/20 12:36:40 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,11 @@ int	display(t_so_long *t_so_long)
 	t_so_long->mlx.mlx_win = mlx_new_window(t_so_long->mlx.mlx,
 			(t_so_long->map.map_x * 100), ((t_so_long->map.map_y + 1) * 100),
 			"so_long");
-	new_image(t_so_long);
+	if (new_image(t_so_long) == -1)
+	{
+		ft_printf("Error\nXPM Error");
+		return (free_all_exit(t_so_long));
+	}
 	t_so_long->status = 0;
 	verif = display_fix(t_so_long, 8);
 	verif = display_collectible(t_so_long);
@@ -39,12 +43,7 @@ int	display_fix(t_so_long *t_so_long, int rotation)
 	verif = display_back(t_so_long);
 	verif = display_wall(t_so_long);
 	verif = display_exit(t_so_long);
-	verif = display_enemy(t_so_long);
 	verif = display_player(t_so_long, rotation);
-	verif = display_heart(t_so_long);
-	verif = display_score(t_so_long);
-	display_move_nbr(t_so_long);
-	display_collectible_nbr(t_so_long);
 	return (verif);
 }
 

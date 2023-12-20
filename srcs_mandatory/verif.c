@@ -6,7 +6,7 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 13:58:41 by lbirloue          #+#    #+#             */
-/*   Updated: 2023/12/14 18:44:07 by lbirloue         ###   ########.fr       */
+/*   Updated: 2023/12/20 12:28:47 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,7 @@ void	fillpaths(t_so_long *t_so_long, int row, int col)
 		|| col > t_so_long->map.map_y
 		|| row > t_so_long->map.map_x 
 		|| t_so_long->verif.map_verif[col][row] == '1' 
-		|| t_so_long->verif.map_verif[col][row] == 'V'
-		|| t_so_long->verif.map_verif[col][row] == '!')
+		|| t_so_long->verif.map_verif[col][row] == 'V')
 		return ;
 	if (t_so_long->verif.map_verif[col][row] == 'C')
 		t_so_long->verif.colectible_verif--;

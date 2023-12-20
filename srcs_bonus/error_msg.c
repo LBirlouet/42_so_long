@@ -6,7 +6,7 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 12:05:04 by lbirloue          #+#    #+#             */
-/*   Updated: 2023/12/14 18:59:42 by lbirloue         ###   ########.fr       */
+/*   Updated: 2023/12/20 12:23:50 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	error_msg(void)
 {
 	ft_printf("Error\n");
-	ft_printf("Invalid map");
+	ft_printf("Invalid map\n");
 	return (-1);
 }
 
@@ -29,6 +29,19 @@ int	return_free_map_verif(t_so_long *t_so_long, int tab_nbr, int ret)
 	}
 	free(t_so_long->verif.map_verif);
 	t_so_long->verif.map_verif = NULL;
+	return (ret);
+}
+
+int	return_free_map_malloc(t_so_long *t_so_long, int tab_nbr, int ret)
+{
+	while (tab_nbr >= 0)
+	{
+		free(t_so_long->map.map[tab_nbr]);
+		t_so_long->map.map[tab_nbr] = NULL;
+		tab_nbr--;
+	}
+	free(t_so_long->map.map);
+	t_so_long->map.map = NULL;
 	return (ret);
 }
 
