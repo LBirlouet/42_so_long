@@ -6,7 +6,7 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 19:11:42 by lbirloue          #+#    #+#             */
-/*   Updated: 2023/12/20 12:59:15 by lbirloue         ###   ########.fr       */
+/*   Updated: 2023/12/21 09:57:22 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	display(t_so_long *t_so_long)
 			"so_long");
 	if (new_image(t_so_long) == -1)
 	{
-		ft_printf("Error\nXPM Error");
+		ft_printf("Error\nXPM Error\n");
 		return (free_all_exit(t_so_long));
 	}
 	t_so_long->status = 0;

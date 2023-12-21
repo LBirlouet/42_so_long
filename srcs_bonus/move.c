@@ -6,7 +6,7 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 12:36:57 by lbirloue          #+#    #+#             */
-/*   Updated: 2023/12/14 18:44:07 by lbirloue         ###   ########.fr       */
+/*   Updated: 2023/12/21 12:30:25 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,10 @@ int	move_down(t_so_long *t_so_long)
 		return (0);
 	}
 	t_so_long->element.player.player_y += 1;
-	t_so_long->move_nbr++;
+	if (t_so_long->move_nbr != INT_MAX)
+		t_so_long->move_nbr++;
+	else
+		t_so_long->move_nbr = INT_MAX;
 	ft_printf("Move : %d\n", t_so_long->move_nbr);
 	mlx_clear_window(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win);
 	t_so_long->element.player.rotation = 2;
@@ -73,7 +76,10 @@ int	move_up(t_so_long *t_so_long)
 		return (0);
 	}
 	t_so_long->element.player.player_y -= 1;
-	t_so_long->move_nbr++;
+	if (t_so_long->move_nbr != INT_MAX)
+		t_so_long->move_nbr++;
+	else
+		t_so_long->move_nbr = INT_MAX;
 	ft_printf("Move : %d\n", t_so_long->move_nbr);
 	mlx_clear_window(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win);
 	t_so_long->element.player.rotation = 8;
@@ -96,7 +102,10 @@ int	move_left(t_so_long *t_so_long)
 		return (0);
 	}
 	t_so_long->element.player.player_x -= 1;
-	t_so_long->move_nbr++;
+	if (t_so_long->move_nbr != INT_MAX)
+		t_so_long->move_nbr++;
+	else
+		t_so_long->move_nbr = INT_MAX;
 	ft_printf("Move : %d\n", t_so_long->move_nbr);
 	mlx_clear_window(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win);
 	t_so_long->element.player.rotation = 4;
@@ -119,7 +128,10 @@ int	move_right(t_so_long *t_so_long)
 		return (0);
 	}
 	t_so_long->element.player.player_x += 1;
-	t_so_long->move_nbr++;
+	if (t_so_long->move_nbr != INT_MAX)
+		t_so_long->move_nbr++;
+	else
+		t_so_long->move_nbr = INT_MAX;
 	ft_printf("Move : %d\n", t_so_long->move_nbr);
 	mlx_clear_window(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win);
 	t_so_long->element.player.rotation = 6;

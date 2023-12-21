@@ -6,7 +6,7 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 09:41:48 by lbirloue          #+#    #+#             */
-/*   Updated: 2023/12/20 11:07:03 by lbirloue         ###   ########.fr       */
+/*   Updated: 2023/12/21 09:49:38 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	path(t_so_long *t_so_long)
 	t_so_long->img.path.path_win = "./img/win_test.xpm";
 	t_so_long->img.path.path_wintxt = "./img/wintxt.xpm";
 	t_so_long->img.path.path_loose = "./img/looseskull.xpm";
-	t_so_long->img.path.path_loosetxt = "./img/loose200x200.xpm";
+	t_so_long->img.path.path_loosetxt = "./img/loosetxt.xpm";
 	t_so_long->img.path.path_enemy = "./img/enemy.xpm";
 	t_so_long->img.path.path_redheart = "./img/heartred.xpm";
 	t_so_long->img.path.path_deadheart = "./img/heartdead.xpm";
