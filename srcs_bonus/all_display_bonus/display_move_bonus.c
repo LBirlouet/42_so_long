@@ -18,13 +18,13 @@ void	display_move_nbr(t_so_long *t_so_long)
 
 	str = ft_itoa(t_so_long->move_nbr);
 	mlx_string_put(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win,
-		30, 60, 0x00000000, "move :");
+		20, 50, 0x00000000, "move :");
 	if (!str)
 		mlx_string_put(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win,
-			85, 60, 0x00000000, "0");
+			85, 50, 0x00000000, "0");
 	else
 		mlx_string_put(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win,
-			85, 60, 0x00000000, str);
+			85, 50, 0x00000000, str);
 	free (str);
 	str = NULL;
 	return ;

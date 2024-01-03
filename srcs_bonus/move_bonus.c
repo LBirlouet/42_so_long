@@ -6,7 +6,7 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 12:36:57 by lbirloue          #+#    #+#             */
-/*   Updated: 2024/01/03 11:38:38 by lbirloue         ###   ########.fr       */
+/*   Updated: 2024/01/03 15:58:27 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ int	move_up(t_so_long *t_so_long)
 		t_so_long->move_nbr++;
 	else
 		t_so_long->move_nbr = INT_MAX;
-	ft_printf("Move : %d\n", t_so_long->move_nbr);
 	mlx_clear_window(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win);
 	t_so_long->element.player.rotation = 8;
 	verif = display_fix(t_so_long, t_so_long->element.player.rotation);
@@ -105,7 +104,6 @@ int	move_left(t_so_long *t_so_long)
 		t_so_long->move_nbr++;
 	else
 		t_so_long->move_nbr = INT_MAX;
-	ft_printf("Move : %d\n", t_so_long->move_nbr);
 	mlx_clear_window(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win);
 	t_so_long->element.player.rotation = 4;
 	verif = display_fix(t_so_long, t_so_long->element.player.rotation);
@@ -131,7 +129,6 @@ int	move_right(t_so_long *t_so_long)
 		t_so_long->move_nbr++;
 	else
 		t_so_long->move_nbr = INT_MAX;
-	ft_printf("Move : %d\n", t_so_long->move_nbr);
 	mlx_clear_window(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win);
 	t_so_long->element.player.rotation = 6;
 	verif = display_fix(t_so_long, t_so_long->element.player.rotation);
