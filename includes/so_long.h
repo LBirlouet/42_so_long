@@ -17,7 +17,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <limits.h>
-# include "../mlx/mlx.h"
+# include <mlx.h>
 # include "../ft_printf/ft_printf.h"
 # include <fcntl.h>
 
@@ -144,7 +144,7 @@ typedef struct s_so_long {
 	int				back_anim_y;
 }				t_so_long;
 
-int		close_window(int keycode, t_so_long *t_so_long);
+int		close_window(t_so_long *t_so_long);
 int		collectible_update(t_so_long *t_so_long);
 int		copy_map(t_so_long *t_so_long);
 int		display(t_so_long *t_so_long);

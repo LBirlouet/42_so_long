@@ -6,7 +6,7 @@
 #    By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/26 18:14:38 by lbirloue          #+#    #+#              #
-#    Updated: 2024/01/03 11:51:41 by lbirloue         ###   ########.fr        #
+#    Updated: 2024/01/03 15:34:31 by lbirloue         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,10 +72,6 @@ FT_PRINTF		= libftprintf.a
 
 FT_PRINTF_PATH	= ft_printf
 
-MLX				= libmlx.a
-
-MLX_PATH		= mlx
-
 CC				= cc
 
 RM				= rm -f
@@ -88,32 +84,25 @@ MLX_FLAGS		= -L. -lmlx -framework OpenGL -framework AppKit
 	@$(CC) $(C_FLAGS) -c $< -o $@ > /dev/null 2>&1 && printf "\e[1;32m.\e[0m" || printf "\e[1;31m\e[0m"
 
 all: ${NAME}
-${NAME}: ${OBJ_MANDATORY} ${FT_PRINTF} ${MLX}
-	@${CC} ${OBJ_MANDATORY} -o ${NAME} ${FT_PRINTF} ${MLX_FLAGS} ${MLX} > /dev/null 2>&1 && printf "\e[1;32m.\e[0m" || printf "\e[1;31m.\e[0m"
+${NAME}: ${OBJ_MANDATORY} ${FT_PRINTF}
+	@${CC} ${OBJ_MANDATORY} -o ${NAME} ${FT_PRINTF} ${MLX_FLAGS} > /dev/null 2>&1 && printf "\e[1;32m.\e[0m" || printf "\e[1;31m.\e[0m"
 
 bonus: ${NAME}_bonus
-${NAME}_bonus: ${OBJ_BONUS} ${FT_PRINTF} ${MLX}
-	@${CC} ${OBJ_BONUS} -o ${NAME} ${FT_PRINTF} ${MLX_FLAGS} ${MLX} > /dev/null 2>&1 && printf "\e[1;32m.\e[0m" || printf "\e[1;31m.\e[0m"
+${NAME}_bonus: ${OBJ_BONUS} ${FT_PRINTF}
+	@${CC} ${OBJ_BONUS} -o ${NAME} ${FT_PRINTF} ${MLX_FLAGS} > /dev/null 2>&1 && printf "\e[1;32m.\e[0m" || printf "\e[1;31m.\e[0m"
 
 ${FT_PRINTF}:
 	@${MAKE} -C ${FT_PRINTF_PATH} > /dev/null 2>&1 && printf "\e[1;32m.\e[0m" || printf "\e[1;31m.\e[0m"
 	@mv ${FT_PRINTF_PATH}/${FT_PRINTF} .
 
-${MLX}:
-	@${MAKE} -C ${MLX_PATH} > /dev/null 2>&1 && printf "\e[1;32m.\e[0m" || printf "\e[1;31m.\e[0m"
-	@mv ${MLX_PATH}/${MLX} .
-
-
 clean:
 	@${MAKE} clean -C ${FT_PRINTF_PATH} > /dev/null 2>&1 && printf "\e[1;31m.\e[0m"
-	@${MAKE} clean -C ${MLX_PATH} > /dev/null 2>&1 && printf "\e[1;31m.\e[0m"
 	@${RM} ${OBJ_MANDATORY} > /dev/null 2>&1 && printf "\e[1;31m.\e[0m"
 	@${RM} ${OBJ_BONUS} > /dev/null 2>&1 && printf "\e[1;31m.\e[0m"
-	@${RM} ${MLX} > /dev/null 2>&1 && printf "\e[1;31m.\e[0m"
 	@${RM} ${FT_PRINTF} > /dev/null 2>&1 && printf "\e[1;31m.\e[0m"
 
 fclean: clean
-	@${RM} ${NAME} ${FT_PRINTF} ${MLX}  > /dev/null 2>&1 && printf "\e[1;31m.\e[0m"
+	@${RM} ${NAME} ${FT_PRINTF} > /dev/null 2>&1 && printf "\e[1;31m.\e[0m"
 
 re: fclean all
 
