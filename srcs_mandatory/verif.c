@@ -6,7 +6,7 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 13:58:41 by lbirloue          #+#    #+#             */
-/*   Updated: 2024/01/03 08:09:31 by lbirloue         ###   ########.fr       */
+/*   Updated: 2024/01/03 11:47:57 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 int	element_verif(t_so_long *t_so_long)
 {
 	if (t_so_long->element.exit.exit_count != 1
-		|| t_so_long->element.colectible.colectible_count < 1)
+		|| t_so_long->element.colectible.colectible_count < 1
+		|| t_so_long->element.player.player_count != 1)
 		return (-1);
 	return (0);
 }

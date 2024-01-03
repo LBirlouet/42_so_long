@@ -6,7 +6,7 @@
 #    By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/26 18:14:38 by lbirloue          #+#    #+#              #
-#    Updated: 2024/01/03 11:35:35 by lbirloue         ###   ########.fr        #
+#    Updated: 2024/01/03 11:51:41 by lbirloue         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,7 +85,7 @@ C_FLAGS			= -Wall -Wextra -Werror
 MLX_FLAGS		= -L. -lmlx -framework OpenGL -framework AppKit
 
 %.o: %.c
-	@$(CC) $(C_FLAGS) -c $< -o $@ > /dev/null 2>&1 && printf "\e[1;32m.\e[0m" || printf "\e[1;31m.\e[0m"
+	@$(CC) $(C_FLAGS) -c $< -o $@ > /dev/null 2>&1 && printf "\e[1;32m.\e[0m" || printf "\e[1;31m\e[0m"
 
 all: ${NAME}
 ${NAME}: ${OBJ_MANDATORY} ${FT_PRINTF} ${MLX}

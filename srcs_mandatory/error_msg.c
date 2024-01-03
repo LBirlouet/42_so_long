@@ -6,7 +6,7 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 12:05:04 by lbirloue          #+#    #+#             */
-/*   Updated: 2024/01/03 07:56:55 by lbirloue         ###   ########.fr       */
+/*   Updated: 2024/01/03 11:42:28 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ int	free_all_exit(t_so_long *t_so_long)
 	}
 	free(t_so_long->map.map);
 	t_so_long->map.map = NULL;
-	system("leaks so_long");
 	exit (0);
 }
 

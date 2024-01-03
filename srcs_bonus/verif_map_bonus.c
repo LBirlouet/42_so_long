@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   verif_map.c                                        :+:      :+:    :+:   */
+/*   verif_map_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 10:24:56 by lbirloue          #+#    #+#             */
-/*   Updated: 2024/01/03 07:56:55 by lbirloue         ###   ########.fr       */
+/*   Updated: 2024/01/03 11:45:39 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	verif_map2(t_so_long *t_so_long, int line_size, int line_counter)
 	t_so_long->map.map_x = line_size;
 	t_so_long->map.map_y = line_counter;
 	verif = element_verif(t_so_long);
-	if (verif == -1 || t_so_long->element.colectible.colectible_count < 1)
+	if (verif == -1)
 		return (-1);
 	verif = verif_last_line(line_counter, t_so_long, 0, 0);
 	if (verif == -1)
