@@ -6,7 +6,7 @@
 #    By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/26 18:14:38 by lbirloue          #+#    #+#              #
-#    Updated: 2024/01/03 11:32:01 by lbirloue         ###   ########.fr        #
+#    Updated: 2024/01/03 11:35:35 by lbirloue         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -117,4 +117,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all _bonus clean fclean re
+.PHONY: all bonus clean fclean re
