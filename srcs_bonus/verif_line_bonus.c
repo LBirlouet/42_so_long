@@ -28,7 +28,7 @@ int	verif_line(char *map, int line_size, t_so_long *t_so_long, int line_counter)
 		if (map[i] == 'P')
 			player_count_pos(t_so_long, i, line_counter);
 		if (map[i] != '1' && map[i] != '0' && map[i] != 'P' 
-			&& map[i] != 'C' && map[i] != 'E')
+			&& map[i] != 'C' && map[i] != 'E' && map[i] != '!')
 			return (-1);
 		i++;
 	}

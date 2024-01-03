@@ -43,7 +43,12 @@ int	display_fix(t_so_long *t_so_long, int rotation)
 	verif = display_back(t_so_long);
 	verif = display_wall(t_so_long);
 	verif = display_exit(t_so_long);
+	verif = display_enemy(t_so_long);
 	verif = display_player(t_so_long, rotation);
+	verif = display_heart(t_so_long);
+	verif = display_score(t_so_long);
+	display_move_nbr(t_so_long);
+	display_collectible_nbr(t_so_long);
 	return (verif);
 }
 

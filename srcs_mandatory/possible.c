@@ -6,11 +6,11 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 19:15:21 by lbirloue          #+#    #+#             */
-/*   Updated: 2023/12/20 12:42:33 by lbirloue         ###   ########.fr       */
+/*   Updated: 2024/01/03 07:56:55 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long_bonus.h"
+#include "../includes/so_long.h"
 
 int	possible_win(t_so_long *t_so_long)
 {

@@ -6,11 +6,11 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 09:58:05 by lbirloue          #+#    #+#             */
-/*   Updated: 2023/12/20 12:31:08 by lbirloue         ###   ########.fr       */
+/*   Updated: 2024/01/03 07:56:55 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long_bonus.h"
+#include "../includes/so_long.h"
 
 void	init_verif_map(t_so_long *t_so_long)
 {

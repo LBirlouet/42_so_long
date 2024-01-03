@@ -25,7 +25,8 @@ int	display_collectible(t_so_long *t_so_long)
 			|| t_so_long->map.map[i][j] == '0'
 				|| t_so_long->map.map[i][j] == 'E'
 					|| t_so_long->map.map[i][j] == 'P'
-						|| t_so_long->map.map[i][j] == 'C')
+						|| t_so_long->map.map[i][j] == 'C'
+							|| t_so_long->map.map[i][j] == '!')
 		{
 			if (t_so_long->map.map[i][j] == 'C')
 				mlx_put_image_to_window(t_so_long->mlx.mlx,

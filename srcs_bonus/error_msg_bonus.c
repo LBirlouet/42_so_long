@@ -15,7 +15,7 @@
 int	error_msg(void)
 {
 	ft_printf("Error\n");
-	ft_printf("Invalid map");
+	ft_printf("Invalid map\n");
 	return (-1);
 }
 

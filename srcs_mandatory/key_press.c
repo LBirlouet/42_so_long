@@ -6,11 +6,11 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 18:12:06 by lbirloue          #+#    #+#             */
-/*   Updated: 2023/12/21 09:53:23 by lbirloue         ###   ########.fr       */
+/*   Updated: 2024/01/03 07:56:55 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long_bonus.h"
+#include "../includes/so_long.h"
 
 int	handle_key_press(int keycode, t_so_long *t_so_long)
 {

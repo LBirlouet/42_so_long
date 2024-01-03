@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display_collectible.c                              :+:      :+:    :+:   */
+/*   display_enemy.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/13 19:18:29 by lbirloue          #+#    #+#             */
+/*   Created: 2023/12/13 18:06:26 by lbirloue          #+#    #+#             */
 /*   Updated: 2024/01/03 07:56:55 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
 
-int	display_collectible(t_so_long *t_so_long)
+int	display_enemy(t_so_long *t_so_long)
 {
 	int	i;
 	int	j;
@@ -22,14 +22,14 @@ int	display_collectible(t_so_long *t_so_long)
 	{
 		j = 0;
 		while (t_so_long->map.map[i][j] == '1'
-			|| t_so_long->map.map[i][j] == '0'
-				|| t_so_long->map.map[i][j] == 'E'
-					|| t_so_long->map.map[i][j] == 'P'
-						|| t_so_long->map.map[i][j] == 'C')
+		|| t_so_long->map.map[i][j] == '!' || t_so_long->map.map[i][j] == '0'
+			|| t_so_long->map.map[i][j] == 'E'
+				|| t_so_long->map.map[i][j] == 'P'
+					|| t_so_long->map.map[i][j] == 'C')
 		{
-			if (t_so_long->map.map[i][j] == 'C')
+			if (t_so_long->map.map[i][j] == '!')
 				mlx_put_image_to_window(t_so_long->mlx.mlx,
-					t_so_long->mlx.mlx_win, t_so_long->img.imgcollectible,
+					t_so_long->mlx.mlx_win, t_so_long->img.imgenemy,
 					(j * 100), (i * 100));
 			j++;
 		}

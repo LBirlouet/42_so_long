@@ -1,39 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display_collectible.c                              :+:      :+:    :+:   */
+/*   key_press.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/13 19:18:29 by lbirloue          #+#    #+#             */
+/*   Created: 2023/12/13 18:12:06 by lbirloue          #+#    #+#             */
 /*   Updated: 2024/01/03 07:56:55 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/so_long.h"
+#include "../includes/so_long.h"
 
-int	display_collectible(t_so_long *t_so_long)
+int	handle_key_press(int keycode, t_so_long *t_so_long)
 {
-	int	i;
-	int	j;
+	int	verif;
 
-	i = 0;
-	while (i <= t_so_long->map.map_y)
+	if (t_so_long->status == 0)
 	{
-		j = 0;
-		while (t_so_long->map.map[i][j] == '1'
-			|| t_so_long->map.map[i][j] == '0'
-				|| t_so_long->map.map[i][j] == 'E'
-					|| t_so_long->map.map[i][j] == 'P'
-						|| t_so_long->map.map[i][j] == 'C')
-		{
-			if (t_so_long->map.map[i][j] == 'C')
-				mlx_put_image_to_window(t_so_long->mlx.mlx,
-					t_so_long->mlx.mlx_win, t_so_long->img.imgcollectible,
-					(j * 100), (i * 100));
-			j++;
-		}
-		i++;
+		verif = move(keycode, t_so_long);
+		verif = possible_win(t_so_long);
+		verif = possible_loose(t_so_long);
 	}
+	verif = escape(keycode, t_so_long);
 	return (0);
+}
+
+int	close_window(int keycode, t_so_long *t_so_long)
+{
+	(void) keycode;
+	mlx_destroy_window(t_so_long->mlx.mlx, t_so_long->mlx.mlx_win);
+	return (free_all_exit(t_so_long));
 }

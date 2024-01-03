@@ -6,7 +6,7 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 13:57:34 by lbirloue          #+#    #+#             */
-/*   Updated: 2024/01/03 08:06:00 by lbirloue         ###   ########.fr       */
+/*   Updated: 2024/01/03 07:56:55 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	main(int argc, char **argv)
 
 	if (verif_arg(argc, argv[1]) == -1)
 		return (0);
+	t_so_long.heart = 2;
 	t_so_long.element.player.rotation = 8;
 	t_so_long.map.map_name = argv[1];
 	t_so_long.map.map_fd = open(t_so_long.map.map_name, O_RDONLY, 0644);
