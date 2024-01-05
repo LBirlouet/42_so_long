@@ -15,12 +15,10 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h>
 # include <limits.h>
+# include <fcntl.h>
 # include <mlx.h>
 # include "../ft_printf/ft_printf.h"
-# include <fcntl.h>
-
 # include "../srcs_bonus/gnl42/get_next_line.h"
 
 # define KEY_UP 126

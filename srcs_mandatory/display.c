@@ -6,7 +6,7 @@
 /*   By: lbirloue <lbirloue@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 19:11:42 by lbirloue          #+#    #+#             */
-/*   Updated: 2024/01/03 15:40:06 by lbirloue         ###   ########.fr       */
+/*   Updated: 2024/01/05 08:28:38 by lbirloue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	display(t_so_long *t_so_long)
 	t_so_long->status = 0;
 	verif = display_fix(t_so_long, 8);
 	verif = display_collectible(t_so_long);
-	printf("non\n");
 	mlx_hook(t_so_long->mlx.mlx_win, 17, 0, &close_window, t_so_long);
 	mlx_hook(t_so_long->mlx.mlx_win, 2, 0, &handle_key_press, t_so_long);
 	mlx_loop(t_so_long->mlx.mlx);
